@@ -11,7 +11,7 @@ namespace Business.Services {
     public class TagServices : BaseServices, ITagServices {
         private readonly ITagRepository _tag;
 
-        public TagServices (ITagRepository tag) {
+        public TagServices (ITagRepository tag, INotificador notificador) : base (notificador) {
             _tag = tag;
         }
 
