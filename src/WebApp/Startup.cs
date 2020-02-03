@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Business.Interfaces;
 using Data.Context;
 using Data.Repositories;
@@ -44,6 +45,8 @@ namespace WebApp {
             services.AddDbContext<AppDbContext> (options =>
                 options.UseSqlServer (
                     Configuration.GetConnectionString ("DefaultConnection")));
+
+            services.AddAutoMapper (typeof (Startup));
 
             services.AddScoped<AppDbContext> ();
             services.AddScoped<ITagRepository, TagRepository> ();
