@@ -1,28 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Business.Interfaces;
-using Data.Context;
-using Data.Repositories;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Config;
-using WebApp.Data;
 
 namespace WebApp {
     public class Startup {
-        public Startup (IConfiguration configuration) {
-            Configuration = configuration;
+        public Startup (IHostingEnvironment host) {
+
+            var builder = new ConfigurationBuilder ()
+
+                .SetBasePath (host.ContentRootPath)
+                .AddJsonFile ("appsettings.json", true, true)
+                .AddJsonFile ($"appsettings.{host.EnvironmentName}.json", true, true);
+
+            Configuration = builder.Build ();
+
         }
 
         public IConfiguration Configuration { get; }
