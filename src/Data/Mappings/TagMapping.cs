@@ -8,24 +8,24 @@ namespace Data.Mappings {
             builder.ToTable ("Tag");
             builder.HasKey (k => k.Id);
             builder.Property (p => p.Name)
-                .IsRequired ();
+                .IsRequired ()
+                .HasColumnType ("varchar(max)");
 
             builder.Property (p => p.TargetLink)
-                .IsRequired ();
+                .IsRequired ()
+                .HasColumnType ("varchar(max)");
+
+            builder.Property (p => p.Campaingn)
+                .IsRequired ()
+                .HasColumnType ("varchar(max)");
+
+            builder.Property (p => p.Parameters)
+                .IsRequired ()
+                .HasColumnType ("varchar(max)");
 
             builder.HasMany (a => a.TagData)
                 .WithOne (a => a.Tag)
                 .HasForeignKey (a => a.TagId);
-
-        }
-    }
-
-    public class TagDataMapping : IEntityTypeConfiguration<TagData> {
-        public void Configure (EntityTypeBuilder<TagData> builder) {
-            builder.ToTable ("TagData");
-            builder.HasKey (k => k.Id);
-            builder.Property (p => p.Data)
-                .IsRequired ();
 
         }
     }

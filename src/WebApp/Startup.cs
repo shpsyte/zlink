@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Data.Context;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Config;
@@ -23,6 +25,7 @@ namespace WebApp {
         public void ConfigureServices (IServiceCollection services) {
 
             services.AddDbContextConfig (Configuration);
+
             services.AddIdentityConfig (Configuration);
             services.AddInjectDependencyConfig ();
             services.AddMVCConfig ();
