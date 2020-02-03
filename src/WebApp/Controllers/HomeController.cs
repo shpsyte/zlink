@@ -12,9 +12,15 @@ namespace WebApp.Controllers {
             return View ();
         }
 
-        [ResponseCache (Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error () {
-            return View (new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        [Route ("erro/{id:lenght(3,3)}")]
+
+        public IActionResult Error (int id) {
+            var erroViewModel = new ErrorViewModel {
+                ErrorCode = id,
+                Message = "Erro",
+                Title = "Erro Title"
+            };
+            return View ("Error", erroViewModel);
         }
     }
 }
