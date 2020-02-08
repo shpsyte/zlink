@@ -34,6 +34,11 @@ namespace Data.Repositories {
             await SaveChanges ();
         }
 
+        public async Task<T> GetOne (Expression<Func<T, bool>> where) {
+            
+            return await _dbSet.Where (where).FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<T>> GetAll () {
             return await _dbSet.AsNoTracking ().ToListAsync ();
         }
@@ -42,22 +47,10 @@ namespace Data.Repositories {
             return await _dbSet.Where (where).ToListAsync ();
         }
 
-        public async Task<IEnumerable<T>> GetAll (Expression<Func<T, bool>> where = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "") {
-            IQueryable<T> query = _dbSet;
+         
 
-            foreach (var includeProperty in includeProperties.Split (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)) {
-                query = query.Include (includeProperty);
-            }
-
-            if (orderBy != null) {
-                return await orderBy (query).ToListAsync ();
-            } else {
-                return await query.ToListAsync ();
-            }
-        }
-
-        public async Task<T> GetById (int id) {
-            return await _dbSet.FindAsync (id);
+        public async Task<T> GetById (params object[] key) {
+            return await _dbSet.FindAsync (key);
         }
 
         public async Task<int> SaveChanges () {
@@ -67,5 +60,7 @@ namespace Data.Repositories {
         public void Dispose () {
             _context?.Dispose ();
         }
+
+      
     }
 }

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApp.Config {
-    public static partial class MVCConfig {
+    public static class MVCConfig {
         public static IServiceCollection AddMVCConfig (this IServiceCollection services) {
 
             services.AddMvc (o => {
@@ -12,5 +12,7 @@ namespace WebApp.Config {
 
             return services;
         }
+
     }
+
 }

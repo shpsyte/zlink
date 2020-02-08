@@ -11,12 +11,10 @@ namespace Business.Interfaces {
         Task Update (T entity);
         Task Delete (T entity);
 
-        Task<T> GetById (int id);
+        Task<T> GetById (params object[] key);
+        Task<T> GetOne (Expression<Func<T, bool>> where);
         Task<IEnumerable<T>> GetAll ();
         Task<IEnumerable<T>> GetAll (Expression<Func<T, bool>> where);
-        Task<IEnumerable<T>> GetAll (Expression<Func<T, bool>> where = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeProperties = "");
-
         Task<int> SaveChanges ();
 
     }

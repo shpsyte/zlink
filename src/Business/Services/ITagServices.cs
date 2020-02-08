@@ -11,11 +11,9 @@ namespace Business.Services {
         Task Update (Tag entity);
         Task Delete (Tag entity);
 
-        Task<Tag> GetById (int id);
-        Task<IEnumerable<Tag>> GetAll ();
+        Task<Tag> GetById (params object[] id);
+        Task<Tag> GetOne (Expression<Func<Tag, bool>> where);
         Task<IEnumerable<Tag>> GetAll (Expression<Func<Tag, bool>> where);
-        Task<IEnumerable<Tag>> GetAll (Expression<Func<Tag, bool>> where = null, Func<IQueryable<Tag>, IOrderedQueryable<Tag>> orderBy = null,
-            string includeProperties = "");
 
     }
 }

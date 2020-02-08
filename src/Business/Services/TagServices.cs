@@ -34,20 +34,19 @@ namespace Business.Services {
             return await _tag.GetAll (where);
         }
 
-        public async Task<IEnumerable<Tag>> GetAll (Expression<Func<Tag, bool>> where = null, Func<IQueryable<Tag>, IOrderedQueryable<Tag>> orderBy = null, string includeProperties = "") {
-            return await _tag.GetAll (where, orderBy, includeProperties);
+        public async Task<Tag> GetById (params object[] id) {
+            return await _tag.GetById (id);
         }
 
-        public async Task<Tag> GetById (int id) {
-            return await _tag.GetById (id);
+        public async Task<Tag> GetOne (Expression<Func<Tag, bool>> where) {
+            return await _tag.GetOne (where);
         }
 
         public async Task Update (Tag entity) {
             await _tag.Update (entity);
         }
 
-        public void Dispose () {
-            _tag?.Dispose ();
-        }
+        public void Dispose () => _tag?.Dispose ();
+
     }
 }

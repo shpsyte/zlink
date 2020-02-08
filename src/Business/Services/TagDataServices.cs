@@ -38,12 +38,12 @@ namespace Business.Services {
             return await _tagdata.GetAll (where);
         }
 
-        public async Task<IEnumerable<TagData>> GetAll (Expression<Func<TagData, bool>> where = null, Func<IQueryable<TagData>, IOrderedQueryable<TagData>> orderBy = null, string includeProperties = "") {
-            return await _tagdata.GetAll (where, orderBy, includeProperties);
+        public async Task<TagData> GetById (params object[] id) {
+            return await _tagdata.GetById (id);
         }
 
-        public async Task<TagData> GetById (int id) {
-            return await _tagdata.GetById (id);
+        public async Task<TagData> GetOne (Expression<Func<TagData, bool>> where) {
+            return await _tagdata.GetOne (where);
         }
 
         public void Dispose () {
