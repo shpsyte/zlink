@@ -29,11 +29,11 @@ Todo BackEnd:
   ✔ Implementar Tratamento de ERrro @done(20-02-02 19:11)
   ✔ Implementar Classes para seguranca @done(20-02-02 19:11)
   ✔ gerar a tabela para setting @done(20-02-08 13:55)
-  ☐ Adicionar SignalR ao Projeto
-  ☐ implementar a base controller
-  ☐ implemetar a class base par services nos controllers
-  ☐ criar a controller admin
-    ☐ criar a index para listar as tag criadas e passar as tags ja
+  ✔ Adicionar SignalR ao Projeto @done(20-02-08 15:00)
+  ✔ implementar a base controller @done(20-02-08 15:00)
+  ✔ implemetar a class base par services nos controllers @done(20-02-08 15:00)
+  ✔ criar a controller admin @done(20-02-08 15:06)
+    ✔ criar a index para listar as tag criadas e passar as tags ja @done(20-02-08 15:15)
     ☐ implementr a criacao de tag via js
     ☐ Implementar a alteracao de estado usando signalR
   

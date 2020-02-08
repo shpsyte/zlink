@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.ViewModels {
-    public class TagViewModel {
+    public class TagDTO {
 
-        public TagViewModel () {
+        public TagDTO () {
             this.Id = Guid.NewGuid ();
+            this.CreateAt = DateTime.UtcNow;
+            this.IsPriority = false;
+            this.Active = true;
+            this.Deleted = false;
         }
 
         [Key]
@@ -33,6 +37,6 @@ namespace WebApp.ViewModels {
         public bool Deleted { get; set; }
         public DateTime CreateAt { get; set; }
 
-        public IEnumerable<TagDataViewModel> TagData { get; set; }
+        public IEnumerable<TagDataDTO> TagData { get; set; }
     }
 }

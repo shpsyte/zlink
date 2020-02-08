@@ -2,7 +2,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.ViewModels {
-    public class TagDataViewModel {
+    public class TagDataDTO {
+
+        public TagDataDTO () {
+            this.Id = Guid.NewGuid ();
+            this.Data = DateTime.UtcNow;
+        }
 
         [Key]
         public Guid Id { get; set; }
@@ -32,6 +37,6 @@ namespace WebApp.ViewModels {
         public string SoClient { get; set; }
         public string ISP { get; set; }
 
-        public TagViewModel Tag { get; set; }
+        public TagDTO Tag { get; set; }
     }
 }

@@ -5,10 +5,10 @@ namespace WebApp.Controllers {
 
   public class BaseController : Controller {
 
-    public IControllerServices _this;
+    public IControllerServices _context;
 
     public BaseController (IControllerServices services) {
-      _this = services;
+      _context = services;
     }
   }
 

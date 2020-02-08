@@ -5,8 +5,7 @@ using WebApp.ViewModels;
 
 namespace WebApp.Controllers {
 
-    public class HomeController : BaseController {
-        public HomeController (IControllerServices services) : base (services) { }
+    public class HomeController : Controller {
 
         public IActionResult Index () {
             return View ();
