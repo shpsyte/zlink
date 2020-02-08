@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApp.Data { 
+namespace WebApp.Data {
     public static class IdentityCustom {
         public static ModelBuilder LoadIdentity (this ModelBuilder model) {
-            model.Entity<IdentityUser> ().ToTable ("User");
+            model.Entity<ApplicationUser> ().ToTable ("User");
             model.Entity<IdentityRole> ().ToTable ("Role");
             model.Entity<IdentityUserClaim<string>> ().ToTable ("UserClaim");
             model.Entity<IdentityUserClaim<string>> ().HasKey (a => new { a.UserId, a.Id });
@@ -19,6 +19,21 @@ namespace WebApp.Data {
             model.Entity<IdentityRoleClaim<string>> ().HasKey (a => new { a.RoleId, a.Id });
             return model;
         }
+
+    }
+
+    public class ApplicationUser : IdentityUser {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public byte[] Avatar { get; set; }
+
+        public string MainLinkImg { get; set; }
+
+        public string Theme { get; set; }
+
+        public byte[] Ico { get; set; }
+
+        public string CssFile { get; set; }
 
     }
 

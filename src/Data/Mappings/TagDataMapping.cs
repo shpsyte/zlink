@@ -7,12 +7,12 @@ namespace Data.Mappings {
     public void Configure (EntityTypeBuilder<TagData> builder) {
       builder.ToTable ("TagData");
       builder.HasKey (k => k.Id);
+
       builder.Property (p => p.Data)
         .IsRequired ();
 
-      builder.Property (p => p.Region)
-        .IsRequired ()
-        .HasColumnType ("varchar(max)");
+      builder.Property (a => a.IsMobile)
+        .HasDefaultValue (false);
 
     }
   }

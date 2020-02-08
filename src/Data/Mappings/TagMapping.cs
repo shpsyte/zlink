@@ -15,17 +15,21 @@ namespace Data.Mappings {
                 .IsRequired ()
                 .HasColumnType ("varchar(max)");
 
-            builder.Property (p => p.Campaingn)
-                .IsRequired ()
-                .HasColumnType ("varchar(max)");
-
-            builder.Property (p => p.Parameters)
-                .IsRequired ()
-                .HasColumnType ("varchar(max)");
-
             builder.HasMany (a => a.TagData)
                 .WithOne (a => a.Tag)
                 .HasForeignKey (a => a.TagId);
+
+            builder.Property (a => a.OpenNewTab)
+                .HasDefaultValue (false);
+
+            builder.Property (a => a.IsPriority)
+                .HasDefaultValue (false);
+
+            builder.Property (a => a.Active)
+                .HasDefaultValue (true);
+
+            builder.Property (a => a.Deleted)
+                .HasDefaultValue (false);
 
         }
     }

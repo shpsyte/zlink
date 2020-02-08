@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApp.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitIdentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,14 @@ namespace WebApp.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Avatar = table.Column<byte[]>(nullable: true),
+                    MainLinkImg = table.Column<string>(nullable: true),
+                    Theme = table.Column<string>(nullable: true),
+                    Ico = table.Column<byte[]>(nullable: true),
+                    CssFile = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

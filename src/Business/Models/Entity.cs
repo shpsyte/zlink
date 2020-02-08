@@ -3,11 +3,11 @@ using System;
 namespace Business.Models {
     public abstract class Entity {
         protected Entity () {
-            this.Id = 0;
-            UserId = Guid.NewGuid ();
+            Id = Guid.NewGuid ();
+
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
 
     }

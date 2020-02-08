@@ -7,9 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApp.Data;
 
-namespace WebApp.Config
-{
-  public static partial class IdentityConfig {
+namespace WebApp.Config {
+    public static partial class IdentityConfig {
         public static IServiceCollection AddIdentityConfig (this IServiceCollection services, IConfiguration configuration) {
 
             services.Configure<CookiePolicyOptions> (options => {
@@ -21,7 +20,7 @@ namespace WebApp.Config
                 options.UseSqlServer (
                     configuration.GetConnectionString ("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser> ()
+            services.AddDefaultIdentity<ApplicationUser> ()
                 .AddDefaultUI (UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext> ();
 

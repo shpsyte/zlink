@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200203010239_TableSistema")]
-    partial class TableSistema
+    [Migration("20200208214521_InitTab")]
+    partial class InitTab
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,43 +23,50 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Business.Models.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasDefaultValue(true);
 
-                    b.Property<bool>("Active");
-
-                    b.Property<string>("Campaingn")
-                        .HasColumnType("varchar(100)");
+                    b.Property<string>("Campaing")
+                        .HasColumnType("varchar(max)");
 
                     b.Property<DateTime>("CreateAt");
 
-                    b.Property<bool>("Deleted");
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
-                    b.Property<DateTime>("End");
+                    b.Property<DateTime?>("End");
 
                     b.Property<string>("HideInfo")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
-                    b.Property<bool>("IsPriority");
+                    b.Property<bool>("IsPriority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
-                    b.Property<bool>("OpenNewTab");
+                    b.Property<bool>("OpenNewTab")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Parameters")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("ShortText")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
-                    b.Property<DateTime>("Start");
+                    b.Property<DateTime?>("Start");
 
                     b.Property<string>("TargetLink")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<byte[]>("Thumb");
 
@@ -72,68 +79,69 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Business.Models.TagData", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Continent")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("ContinentCode")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Country")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Currency")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<DateTime>("Data");
 
                     b.Property<string>("District")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("ISP")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
-                    b.Property<bool>("IsMobile");
+                    b.Property<bool>("IsMobile")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Iso")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Lat")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Lon")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Organization")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Region")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("RegionName")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("SoClient")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
-                    b.Property<int>("TagId");
+                    b.Property<Guid>("TagId");
 
                     b.Property<string>("TimeZone")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<Guid>("UserId");
 
                     b.Property<string>("WebBrowserClient")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(max)");
 
                     b.HasKey("Id");
 

@@ -1,9 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using WebApp.Hubs;
 
 namespace WebApp.Config {
   public static class AppConfig {
     public static IApplicationBuilder AddRoutes (this IApplicationBuilder app) {
+
+      app.UseSignalR (routes => {
+        routes.MapHub<NewTagHub> ("/NewTagHub");
+      });
+
       app.UseMvc (routes => {
         routes.MapRoute (
           name: "default",

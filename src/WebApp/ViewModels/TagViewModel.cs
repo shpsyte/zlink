@@ -5,8 +5,12 @@ using System.ComponentModel.DataAnnotations;
 namespace WebApp.ViewModels {
     public class TagViewModel {
 
+        public TagViewModel () {
+            this.Id = Guid.NewGuid ();
+        }
+
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string UserId { get; set; }
@@ -16,8 +20,8 @@ namespace WebApp.ViewModels {
 
         [Required]
         public string TargetLink { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public Nullable<DateTime> Start { get; set; }
+        public Nullable<DateTime> End { get; set; }
         public byte[] Thumb { get; set; }
         public string HideInfo { get; set; }
         public string ShortText { get; set; }

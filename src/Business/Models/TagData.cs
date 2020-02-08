@@ -2,7 +2,7 @@ using System;
 
 namespace Business.Models {
     public class TagData : Entity {
-        public int TagId { get; set; }
+        public Guid TagId { get; set; }
         public DateTime Data { get; set; }
         public string Continent { get; set; }
         public string ContinentCode { get; set; }

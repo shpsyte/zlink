@@ -21,41 +21,46 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Business.Models.Tag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasDefaultValue(true);
 
-                    b.Property<bool>("Active");
-
-                    b.Property<string>("Campaingn")
-                        .IsRequired()
+                    b.Property<string>("Campaing")
                         .HasColumnType("varchar(max)");
 
                     b.Property<DateTime>("CreateAt");
 
-                    b.Property<bool>("Deleted");
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
-                    b.Property<DateTime>("End");
+                    b.Property<DateTime?>("End");
 
                     b.Property<string>("HideInfo")
                         .HasColumnType("varchar(max)");
 
-                    b.Property<bool>("IsPriority");
+                    b.Property<bool>("IsPriority")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(max)");
 
-                    b.Property<bool>("OpenNewTab");
+                    b.Property<bool>("OpenNewTab")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Parameters")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("ShortText")
                         .HasColumnType("varchar(max)");
 
-                    b.Property<DateTime>("Start");
+                    b.Property<DateTime?>("Start");
 
                     b.Property<string>("TargetLink")
                         .IsRequired()
@@ -72,9 +77,8 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Business.Models.TagData", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("City")
                         .HasColumnType("varchar(max)");
@@ -99,7 +103,9 @@ namespace Data.Migrations
                     b.Property<string>("ISP")
                         .HasColumnType("varchar(max)");
 
-                    b.Property<bool>("IsMobile");
+                    b.Property<bool>("IsMobile")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Iso")
                         .HasColumnType("varchar(max)");
@@ -117,7 +123,6 @@ namespace Data.Migrations
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("Region")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("RegionName")
@@ -126,7 +131,7 @@ namespace Data.Migrations
                     b.Property<string>("SoClient")
                         .HasColumnType("varchar(max)");
 
-                    b.Property<int>("TagId");
+                    b.Property<Guid>("TagId");
 
                     b.Property<string>("TimeZone")
                         .HasColumnType("varchar(max)");

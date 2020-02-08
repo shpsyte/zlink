@@ -26,21 +26,34 @@ Todo BackEnd:
   ✔ Implementar Validacaoes de Negocios @done(20-02-02 19:11)
   ✔ Implementar EVentos de Notifcacaco @done(20-02-02 19:11)
   ✔ Implementar Eveneto para notificao no frontend @done(20-02-02 19:11)
-  ✔ IMplementar Trantamento de ERrro @done(20-02-02 19:11)
-  ✔ IMplementar Classes para seguranca @done(20-02-02 19:11)
+  ✔ Implementar Tratamento de ERrro @done(20-02-02 19:11)
+  ✔ Implementar Classes para seguranca @done(20-02-02 19:11)
+  ✔ gerar a tabela para setting @done(20-02-08 13:55)
+  ☐ Adicionar SignalR ao Projeto
+  ☐ implementar a base controller
+  ☐ implemetar a class base par services nos controllers
+  ☐ criar a controller admin
+    ☐ criar a index para listar as tag criadas e passar as tags ja
+    ☐ implementr a criacao de tag via js
+    ☐ Implementar a alteracao de estado usando signalR
+  
 
+ 
 
 Todo FrontEnd:
-  ☐ Gerar os controllers
-  ☐ Arrumar o controller
-  ☐ Gerar a View
-  ☐ Arrumar a View 1st 
+  ☐ Criar/Design a Home do site
+  ☐ Criar/Design a tela de login
+  ☐ Criar/Design da tela admin
 
-Todo FronEnd Design:
-   ☐ Alterar o designed do site
 
 Todo Deploy:
   ☐ Deploy da Aplicacao
 
 
+
+  Projeto:
+   Tela home
+   Tela login
+   Tela admin
+   IMplementar o autoMIgrate strategy
   
