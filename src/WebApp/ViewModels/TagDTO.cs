@@ -11,18 +11,16 @@ namespace WebApp.ViewModels {
             this.IsPriority = false;
             this.Active = true;
             this.Deleted = false;
+            //todo: Retirar, esta temporariamente
+            this.UserId = Guid.NewGuid ();
         }
 
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        [Required]
         public string Name { get; set; }
-
-        [Required]
         public string TargetLink { get; set; }
         public Nullable<DateTime> Start { get; set; }
         public Nullable<DateTime> End { get; set; }

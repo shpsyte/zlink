@@ -47,7 +47,6 @@ namespace Data.Migrations
                         .HasDefaultValue(false);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<bool>("OpenNewTab")
@@ -63,7 +62,6 @@ namespace Data.Migrations
                     b.Property<DateTime?>("Start");
 
                     b.Property<string>("TargetLink")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<byte[]>("Thumb");

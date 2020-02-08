@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200208214521_InitTab")]
+    [Migration("20200208234517_InitTab")]
     partial class InitTab
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,6 @@ namespace Data.Migrations
                         .HasDefaultValue(false);
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<bool>("OpenNewTab")
@@ -65,7 +64,6 @@ namespace Data.Migrations
                     b.Property<DateTime?>("Start");
 
                     b.Property<string>("TargetLink")
-                        .IsRequired()
                         .HasColumnType("varchar(max)");
 
                     b.Property<byte[]>("Thumb");

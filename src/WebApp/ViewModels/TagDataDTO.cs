@@ -7,12 +7,13 @@ namespace WebApp.ViewModels {
         public TagDataDTO () {
             this.Id = Guid.NewGuid ();
             this.Data = DateTime.UtcNow;
+            // TODO: temporario
+            this.UserId = Guid.NewGuid ();
         }
 
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
         public Guid UserId { get; set; }
         public Guid TagId { get; set; }
 

@@ -31,9 +31,9 @@ namespace WebApp.Services {
       this.tagHub = tagHub;
     }
 
-    public ITagServices _tagServices => tagServices;
+    public ITagServices _tag => tagServices;
 
-    public ITagDataServices _tagDataServices => tagDataServices;
+    public ITagDataServices _tagData => tagDataServices;
 
     public IMapper _mapper => mapper;
 

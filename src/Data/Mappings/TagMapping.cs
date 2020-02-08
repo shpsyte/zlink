@@ -7,13 +7,6 @@ namespace Data.Mappings {
         public void Configure (EntityTypeBuilder<Tag> builder) {
             builder.ToTable ("Tag");
             builder.HasKey (k => k.Id);
-            builder.Property (p => p.Name)
-                .IsRequired ()
-                .HasColumnType ("varchar(max)");
-
-            builder.Property (p => p.TargetLink)
-                .IsRequired ()
-                .HasColumnType ("varchar(max)");
 
             builder.HasMany (a => a.TagData)
                 .WithOne (a => a.Tag)

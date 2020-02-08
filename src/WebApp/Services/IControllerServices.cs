@@ -8,8 +8,8 @@ using WebApp.Hubs;
 namespace WebApp.Services {
 
   public interface IControllerServices {
-    ITagServices _tagServices { get; }
-    ITagDataServices _tagDataServices { get; }
+    ITagServices _tag { get; }
+    ITagDataServices _tagData { get; }
     IMapper _mapper { get; }
 
     ILogger<ControllerServices> _looger { get; }

@@ -13,8 +13,8 @@ namespace Data.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     UserId = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(type: "varchar(max)", nullable: false),
-                    TargetLink = table.Column<string>(type: "varchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(max)", nullable: true),
+                    TargetLink = table.Column<string>(type: "varchar(max)", nullable: true),
                     Start = table.Column<DateTime>(nullable: true),
                     End = table.Column<DateTime>(nullable: true),
                     Thumb = table.Column<byte[]>(nullable: true),

@@ -1,0 +1,39 @@
+@model IEnumerable<TagDTO>
+
+<div class="container">
+
+    <div class="tags">
+
+         <div class="tag">
+             <h1>Link</h1>
+
+             <table class="table table-hover">
+                 <thead class="thead-dark">
+                    <tr>  <th scope="col">First</th>  </tr>
+                </thead>
+                  <tbody>
+                      @foreach(var tag in @Model)
+                      {
+                          <tr> <td>@tag.Name</td></tr>
+                      }
+                      
+                      <tr> <td>asdfas</td>  </tr>
+                      <tr> <td>asdfas</td>  </tr>
+                      <tr> <td>asdfas</td>  </tr>
+
+                  </tbody>
+             </table>
+ 
+         </div>
+
+         <div class="view">
+            <h1>View on Mobile</h1>
+    
+         </div>
+
+
+
+    </div>
+
+
+</div>
