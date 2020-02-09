@@ -16,5 +16,9 @@ namespace Business.Services {
         Task<IEnumerable<Tag>> GetAll ();
         Task<IEnumerable<Tag>> GetAll (Expression<Func<Tag, bool>> where);
 
+        // Custom
+        Task<IEnumerable<Tag>> GetAllTagActived ();
+        Task<IEnumerable<Tag>> GetAllTagActived (Func<Tag, bool> where);
+
     }
 }

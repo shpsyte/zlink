@@ -1,4 +1,4 @@
-@model IEnumerable<TagDTO>
+@model TagDTO
 
 <div class="container">
 
@@ -7,22 +7,24 @@
          <div class="tag">
              <h1>Link</h1>
 
-             <table class="table table-hover">
-                 <thead class="thead-dark">
-                    <tr>  <th scope="col">First</th>  </tr>
-                </thead>
-                  <tbody>
-                      @foreach(var tag in @Model)
-                      {
-                          <tr> <td>@tag.Name</td></tr>
-                      }
-                      
-                      <tr> <td>asdfas</td>  </tr>
-                      <tr> <td>asdfas</td>  </tr>
-                      <tr> <td>asdfas</td>  </tr>
+             <div class="form">
+                 <form asp-antiforgery="true" >
+                    <input asp-for="@Model.Name" value="LinkName" >
+                    <input asp-for="@Model.TargetLink" value="LinkValue" >
+                    <button data-url="@Url.Action("Create", "Admin")" 
+                        id="add" type="submit" value="Add">Add</button>
+                 </form>
+             </div>
 
-                  </tbody>
-             </table>
+             <hr>
+              <ul id="links">
+                @foreach(var tag in @Model.Tags)
+                {
+                    <li>@tag.Name</li>
+                }
+
+              </ul>
+ 
  
          </div>
 

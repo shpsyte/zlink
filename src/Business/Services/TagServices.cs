@@ -48,5 +48,17 @@ namespace Business.Services {
 
         public void Dispose () => _tag?.Dispose ();
 
+        //Custom
+
+        public async Task<IEnumerable<Tag>> GetAllTagActived () {
+            return (await _tag.GetAll (a => a.Active == true)).OrderBy (a => a.IsPriority);
+
+        }
+
+        public async Task<IEnumerable<Tag>> GetAllTagActived (Func<Tag, bool> where) {
+
+            return (await GetAllTagActived ()).Where (where);
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Business.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Services;
 using WebApp.ViewModels;
@@ -8,13 +9,27 @@ namespace WebApp.Controllers {
     public class AdminController : BaseController {
         public AdminController (IControllerServices services) : base (services) { }
 
-        // GET: Admin
+        [Route ("admin-link")]
         public async Task<IActionResult> Index () {
             return View (
-                _context
-                ._mapper
-                .Map<IEnumerable<TagDTO>> (await _context._tag.GetAll ())
+                new TagDTO () {
+                    Tags = _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ())
+                }
             );
+        }
+
+        [Route ("admin-create-link")]
+        public async Task<JsonResult> Create (TagDTO tagDTO) {
+
+            await _context._tag.Add (_context._mapper.Map<Tag> (tagDTO));
+
+            if (OperacaoValida ())
+                await SendNotificationNewLink (tagDTO);
+
+            return Json (new {
+                success = OperacaoValida (),
+                    data = tagDTO
+            });
         }
 
         // // GET: Admin/Details/5

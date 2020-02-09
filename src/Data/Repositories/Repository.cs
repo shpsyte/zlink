@@ -44,7 +44,7 @@ namespace Data.Repositories {
         }
 
         public async Task<IEnumerable<T>> GetAll (Expression<Func<T, bool>> where) {
-            return await _dbSet.Where (where).ToListAsync ();
+            return await _dbSet.AsNoTracking().Where (where).ToListAsync ();
         }
 
          

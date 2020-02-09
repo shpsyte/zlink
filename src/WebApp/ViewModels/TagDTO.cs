@@ -36,5 +36,6 @@ namespace WebApp.ViewModels {
         public DateTime CreateAt { get; set; }
 
         public IEnumerable<TagDataDTO> TagData { get; set; }
+        public IEnumerable<TagDTO> Tags { get; set; }
     }
 }
