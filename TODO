@@ -34,26 +34,33 @@ Todo BackEnd:
   ✔ implemetar a class base par services nos controllers @done(20-02-08 15:00)
   ✔ criar a controller admin @done(20-02-08 15:06)
     ✔ criar a index para listar as tag criadas e passar as tags ja @done(20-02-08 15:15)
-    ☐ implementr a criacao de tag via js
-    ☐ Implementar a alteracao de estado usando signalR
-  
+    ✔ implementr a criacao de tag via js @done(20-02-09 21:23)
+    ✘ Implementar a alteracao de estado usando signalR @cancelled(20-02-09 21:23)
 
- 
+Todo Tela de Backend do Tag
+ ☐ Criar o nome e link dentro de input
+ ☐ Ao criar uma nova tag, criar dentro de um container onde possa: desabilitar, alterar name e link
+ ☐ clicar no botão para alterar
+ ☐ No checkbox de ativo ou não disparar o evento para o servidor
+ ☐ para cada ação nas tags deverá atualizar a tela do mobile que representa a tela do Tag
 
-Todo FrontEnd:
-  ☐ Criar/Design a Home do site
-  ☐ Criar/Design a tela de login
-  ☐ Criar/Design da tela admin
+Todo tela do profile com as tags
+ ☐ Criar uma Action que recebe o username e renderiza as tags ativas
+ ☐ A pagina é simples e mobile
+ ☐ Para cada click nas tags devera registrar as informações do IP de origem
 
+Todo Tela de Backend para analise de dados de cada tag
+ ☐ Criar uma acao que recebe a tag e retorna os dados de acesso
 
-Todo Deploy:
-  ☐ Deploy da Aplicacao
+FrontEnd
+ ☐ Criar o layout para tela de admin do link
+ ☐ Criar a tela de login do site
+ ☐ Criar o layout para a tela de username que renderiza as tagas ativas
+ ☐ criar o layout da tela que retorna os dados de acesso para cada tag
+ ☐ Crirar a tela do Site
 
+Deploy
+ - Deploy da Aplicação
+ - Update page on website personal ??
 
-
-  Projeto:
-   Tela home
-   Tela login
-   Tela admin
-   IMplementar o autoMIgrate strategy
-  
+   
