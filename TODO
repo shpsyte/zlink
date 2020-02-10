@@ -38,10 +38,7 @@ Todo BackEnd:
     ✘ Implementar a alteracao de estado usando signalR @cancelled(20-02-09 21:23)
 
 
-    -- teste
-    -- commit under my accout
-    -- commit unddr  y cacout
-    -- teste
+    -- remove primaryle email
 Todo Tela de Backend do Tag
  ☐ Criar o nome e link dentro de input
  ☐ Ao criar uma nova tag, criar dentro de um container onde possa: desabilitar, alterar name e link
