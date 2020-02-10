@@ -37,6 +37,8 @@ Todo BackEnd:
     ✔ implementr a criacao de tag via js @done(20-02-09 21:23)
     ✘ Implementar a alteracao de estado usando signalR @cancelled(20-02-09 21:23)
 
+
+    -- teste
 Todo Tela de Backend do Tag
  ☐ Criar o nome e link dentro de input
  ☐ Ao criar uma nova tag, criar dentro de um container onde possa: desabilitar, alterar name e link
