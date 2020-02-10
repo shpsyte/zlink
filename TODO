@@ -39,6 +39,7 @@ Todo BackEnd:
 
 
     -- remove primaryle email
+    -- remove pri
 Todo Tela de Backend do Tag
  ☐ Criar o nome e link dentro de input
  ☐ Ao criar uma nova tag, criar dentro de um container onde possa: desabilitar, alterar name e link
