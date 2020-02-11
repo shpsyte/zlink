@@ -23,9 +23,6 @@ namespace WebApp.Controllers {
 
             await _context._tag.Add (_context._mapper.Map<Tag> (tagDTO));
 
-            if (OperacaoValida ())
-                await SendNotificationNewLink (tagDTO);
-
             return Json (new {
                 success = OperacaoValida (),
                     data = tagDTO

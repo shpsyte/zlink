@@ -17,13 +17,30 @@
              </div>
 
              <hr>
-              <ul id="links">
-                @foreach(var tag in @Model.Tags)
-                {
-                    <li>@tag.Name</li>
-                }
 
-              </ul>
+             <div class="links">
+              <div class="item">
+                    @foreach(var item  in @Model.Tags)
+                    {
+                        <form asp-antiforgery="true" >
+                            <div class="data-links">
+                                <div class="data-input">
+                                    <input data-type="name" type="text" value=@item.Name>
+                                    <input type="text" value=@item.TargetLink>
+                                    <input type="checkbox"> 
+                                    <label for="active" >Ativo</label>
+                                </div>
+                                <div class="data-action">
+                                    <button data-id="@item.Id" value="Update">Update</button>
+                                </div>  
+                            </div>
+                        </form> 
+                    }
+
+
+                </div> 
+
+            </div>            
  
  
          </div>
