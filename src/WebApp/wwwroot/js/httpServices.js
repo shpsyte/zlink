@@ -24,7 +24,9 @@ function _get(url, callback, errorcallback) {
     });
 }
 
-function _post(url, token, data, callback, errorcallback) {
+function _post(url, data, callback, errorcallback) {
+    var token = GetOne("input[name=__RequestVerificationToken]").value;
+
     $.ajax({
         type: "POST",
         headers: {

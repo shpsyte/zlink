@@ -18,6 +18,7 @@ namespace Business.Services {
 
         // Custom
         Task<IEnumerable<Tag>> GetAllTagActived ();
+        Task<int> GetAllTagActivedCount ();
         Task<IEnumerable<Tag>> GetAllTagActived (Func<Tag, bool> where);
 
     }

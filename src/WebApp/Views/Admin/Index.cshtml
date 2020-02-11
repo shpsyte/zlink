@@ -1,14 +1,13 @@
 @model TagDTO
-
+@{ var line = 1; }
 <div class="container">
-
     <div class="tags">
-
          <div class="tag">
              <h1>Link</h1>
 
              <div class="form">
                  <form asp-antiforgery="true" >
+                     <input type="hidden" asp-for="TotalTags">
                     <input asp-for="@Model.Name" value="LinkName" >
                     <input asp-for="@Model.TargetLink" value="LinkValue" >
                     <button data-url="@Url.Action("Create", "Admin")" 
@@ -22,19 +21,29 @@
               <div class="item">
                     @foreach(var item  in @Model.Tags)
                     {
+                     
                         <form asp-antiforgery="true" >
                             <div class="data-links">
                                 <div class="data-input">
-                                    <input data-type="name" type="text" value=@item.Name>
-                                    <input type="text" value=@item.TargetLink>
-                                    <input type="checkbox"> 
-                                    <label for="active" >Ativo</label>
+                                    
+                                    <input data-key=@line data-name type="text" value="@item.Name">
+                                    <input data-key=@line data-link type="text" value="@item.TargetLink">
+                                    <input data-key=@line data-active  id=@line type="checkbox" value="@item.Active" checked="@item.Active"  > 
+                                    <label for=@line >Ativo</label>
+                                    
                                 </div>
                                 <div class="data-action">
-                                    <button data-id="@item.Id" value="Update">Update</button>
+                                    <button data-key=@line 
+                                            data-type="update" 
+                                            data-id="@item.Id" 
+                                            data-url=@Url.Action("Update", "Admin") 
+                                            value="Update">Update</button>
                                 </div>  
                             </div>
                         </form> 
+                        { line++; }
+                        <br>
+                        
                     }
 
 

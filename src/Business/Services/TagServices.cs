@@ -51,8 +51,12 @@ namespace Business.Services {
         //Custom
 
         public async Task<IEnumerable<Tag>> GetAllTagActived () {
-            return (await _tag.GetAll (a => a.Active == true)).OrderBy (a => a.IsPriority);
+            return (await _tag.GetAll (a => a.Deleted == false)).OrderBy (a => a.IsPriority);
 
+        }
+
+        public async Task<int> GetAllTagActivedCount () {
+            return (await GetAllTagActived ()).Count ();
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagActived (Func<Tag, bool> where) {

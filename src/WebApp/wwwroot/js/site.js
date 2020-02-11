@@ -5,16 +5,16 @@ add.addEventListener("click", () => {
     event.preventDefault();
     let name = GetOne("#Name").value;
     let targetlink = GetOne("#TargetLink").value;
-    let token = GetOne("input[name=__RequestVerificationToken]").value;
+
     let url = add.getAttribute("data-url");
 
     let data = { name, targetlink };
 
-    _post(url, token, data, successfull);
+    _post(url, data, CreateTagSucceful);
 });
 
 // Js para adicionar um novo item na tabela
-function successfull(data) {
+function CreateTagSucceful(data) {
     let linkDto = data.data;
     let divLinks = GetOne(".links");
 
@@ -45,11 +45,12 @@ function successfull(data) {
     inputActive.setAttribute("type", "checkbox");
 
     let label = NewElement("label");
-    label.appendChild(NewText("Actived"));
+    label.appendChild(NewText("Active"));
 
     let button = NewElement("button");
     button.setAttribute("value", "update");
     button.appendChild(NewText("Update"));
+    button.onclick = UpdateBtn;
 
     divDataInput.appendChild(inputName);
     divDataInput.appendChild(inputLink);
@@ -64,5 +65,38 @@ function successfull(data) {
     form.appendChild(divDataLinks);
     divItem.appendChild(form);
 
-    divLinks.appendChild(divItem);
+    divLinks.prepend(divItem);
+}
+
+// JS para alterar uma tag existe
+let btnUpdate = GetAll('button[data-type="update"]');
+
+for (const btn of btnUpdate) {
+    btn.addEventListener("click", UpdateBtn);
+}
+
+function UpdateBtn() {
+    event.preventDefault();
+    let btn = this;
+    let url = btn.getAttribute("data-url");
+    let key = btn.getAttribute("data-key");
+    let id = btn.getAttribute("data-id");
+    let name = GetOne(`input[data-name][data-key="${key}"] `).value;
+    let targetlink = GetOne(`input[data-link][data-key="${key}"] `).value;
+    let active = GetOne(`input[data-active][data-key="${key}"] `).checked;
+    let data = { id, name, targetlink, active, key };
+    _post(url, data, UpdateTagSucceful);
+}
+
+function UpdateTagSucceful(data) {
+    let linkDto = data.data;
+    let key = linkDto.key;
+
+    let name = GetOne(`input[data-name][data-key="${key}"] `);
+    let targetlink = GetOne(`input[data-link][data-key="${key}"] `);
+    let active = GetOne(`input[data-active][data-key="${key}"] `);
+
+    name.value = linkDto.name;
+    targetlink.value = linkDto.targetLink;
+    active.checked = linkDto.active;
 }

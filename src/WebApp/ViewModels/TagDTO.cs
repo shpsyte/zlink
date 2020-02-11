@@ -35,7 +35,11 @@ namespace WebApp.ViewModels {
         public bool Deleted { get; set; }
         public DateTime CreateAt { get; set; }
 
+        public int TotalTags { get; set; }
+        public int key { get; set; }
+
         public IEnumerable<TagDataDTO> TagData { get; set; }
         public IEnumerable<TagDTO> Tags { get; set; }
+
     }
 }

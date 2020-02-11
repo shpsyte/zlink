@@ -11,9 +11,11 @@ namespace WebApp.Controllers {
 
         [Route ("admin-link")]
         public async Task<IActionResult> Index () {
+
             return View (
                 new TagDTO () {
-                    Tags = _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ())
+                    Tags = _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ()),
+                        TotalTags = await _context._tag.GetAllTagActivedCount ()
                 }
             );
         }
@@ -22,6 +24,16 @@ namespace WebApp.Controllers {
         public async Task<JsonResult> Create (TagDTO tagDTO) {
 
             await _context._tag.Add (_context._mapper.Map<Tag> (tagDTO));
+
+            return Json (new {
+                success = OperacaoValida (),
+                    data = tagDTO
+            });
+        }
+
+        [Route ("admin-update-link")]
+        public async Task<JsonResult> Update (TagDTO tagDTO) {
+            await _context._tag.Update (_context._mapper.Map<Tag> (tagDTO));
 
             return Json (new {
                 success = OperacaoValida (),

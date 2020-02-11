@@ -39,7 +39,7 @@ Todo BackEnd:
 
 Todo Tela de Backend do Tag
  ✔ Criar o nome e link dentro de input @done(20-02-10 16:26)
- ☐ Ao criar uma nova tag, criar dentro de um container onde possa: desabilitar, alterar name e link
+ ✔ Ao criar uma nova tag, criar dentro de um container onde possa: desabilitar, alterar name e link @done(20-02-11 13:25)
  ☐ clicar no botão para alterar
  ☐ No checkbox de ativo ou não disparar o evento para o servidor
  ☐ para cada ação nas tags deverá atualizar a tela do mobile que representa a tela do Tag
