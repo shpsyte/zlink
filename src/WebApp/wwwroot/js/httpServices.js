@@ -10,7 +10,18 @@ function AddNewLi(ul, text) {
     ul.appendChild(li);
 }
 
+function ToggleSpiner(behavior) {
+    let loading = GetOne("#loading");
+
+    if (behavior === "hide") {
+        loading.classList.add("hide");
+    } else {
+        loading.classList.remove("hide");
+    }
+}
+
 function _get(url, callback, errorcallback) {
+    ToggleSpiner("show");
     $.ajax({
         type: "GET",
         url: url,
@@ -22,11 +33,12 @@ function _get(url, callback, errorcallback) {
         },
         dataType: "json"
     });
+    ToggleSpiner("hide");
 }
 
 function _post(url, data, callback, errorcallback) {
     var token = GetOne("input[name=__RequestVerificationToken]").value;
-
+    ToggleSpiner("show");
     $.ajax({
         type: "POST",
         headers: {
@@ -42,4 +54,5 @@ function _post(url, data, callback, errorcallback) {
         },
         dataType: "json"
     });
+    ToggleSpiner("hide");
 }
