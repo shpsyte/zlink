@@ -7,10 +7,11 @@ using WebApp.Services;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers {
+
     public class AdminController : BaseController {
         public AdminController (IControllerServices services) : base (services) { }
 
-        [Route ("admin-link")]
+        [Route ("app-link")]
         public async Task<IActionResult> Index () {
 
             return View (
@@ -21,7 +22,7 @@ namespace WebApp.Controllers {
             );
         }
 
-        [Route ("admin-create-link")]
+        [Route ("app-create-link")]
         public async Task<JsonResult> Create (TagDTO tagDTO) {
 
             await _context._tag.Add (_context._mapper.Map<Tag> (tagDTO));
@@ -32,11 +33,11 @@ namespace WebApp.Controllers {
             });
         }
 
-        [Route ("admin-update-link")]
+        [Route ("app-update-link")]
         public async Task<JsonResult> Update (TagDTO tagDTO) {
 
+            //prevent null columns....
             var dataObj = await _context._tag.GetOne (a => a.Id == tagDTO.Id);
-
             dataObj.Name = tagDTO.Name;
             dataObj.TargetLink = tagDTO.TargetLink;
             dataObj.Active = dataObj.Active;
@@ -50,10 +51,11 @@ namespace WebApp.Controllers {
         }
 
         [AllowAnonymous]
-        [Route ("/{username:length(1,10)}")]
+        [Route ("app/{username?}")]
+        [Route ("p/{username?}")]
+        [Route ("/{username}")]
         public async Task<IActionResult> Profile (string username) {
-            _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagByUserName (username));
-            return View ();
+            return View (_context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagByUserName (username)));
         }
 
     }

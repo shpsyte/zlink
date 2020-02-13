@@ -7,14 +7,15 @@ using WebApp.Hubs;
 
 namespace WebApp.Services {
 
-  public interface IControllerServices {
-    ITagServices _tag { get; }
-    ITagDataServices _tagData { get; }
-    IMapper _mapper { get; }
+    public interface IControllerServices {
+        ITagServices _tag { get; }
+        ITagDataServices _tagData { get; }
+        IMapper _mapper { get; }
+        IUser _user { get; }
 
-    ILogger<ControllerServices> _looger { get; }
-    INotificador _notificator { get; }
-    IHubContext<NewTagHub> _tagHub { get; }
-  }
+        ILogger<ControllerServices> _looger { get; }
+        INotificador _notificator { get; }
+        IHubContext<NewTagHub> _tagHub { get; }
+    }
 
 }

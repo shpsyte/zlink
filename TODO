@@ -45,12 +45,18 @@ Todo Tela de Backend do Tag
  ✔ para cada ação nas tags deverá atualizar a tela do mobile que representa a tela do Tag @done(20-02-12 13:08)
 
 Todo tela do profile com as tags
- ☐ Criar uma Action que recebe o username e renderiza as tags ativas
- ☐ A pagina é simples e mobile
+ ✔ Criar uma Action que recebe o username e renderiza as tags ativas @done(20-02-12 16:54)
+ ✔ A pagina é simples e mobile @done(20-02-12 16:54)
+ ☐ Enviar os dados do usuario/profile para esta pagina
  ☐ Para cada click nas tags devera registrar as informações do IP de origem
 
 Todo Tela de Backend para analise de dados de cada tag
  ☐ Criar uma acao que recebe a tag e retorna os dados de acesso
+
+
+Todo user
+ - Configurar o register para receber o email diferente do username
+
 
 FrontEnd
  ☐ Criar o layout para tela de admin do link
