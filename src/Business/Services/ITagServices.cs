@@ -10,7 +10,6 @@ namespace Business.Services {
         Task Add (Tag entity);
         Task Update (Tag entity);
         Task Delete (Tag entity);
-
         Task<Tag> GetById (params object[] id);
         Task<Tag> GetOne (Expression<Func<Tag, bool>> where);
         Task<IEnumerable<Tag>> GetAll ();
@@ -18,8 +17,8 @@ namespace Business.Services {
 
         // Custom
         Task<IEnumerable<Tag>> GetAllTagActived ();
+        Task<IEnumerable<Tag>> GetAllTagByUserName (string username);
         Task<int> GetAllTagActivedCount ();
-        Task<IEnumerable<Tag>> GetAllTagActived (Func<Tag, bool> where);
 
     }
 }

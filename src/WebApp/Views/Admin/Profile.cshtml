@@ -1,0 +1,62 @@
+@model TagDTO
+
+@{ var line = 1; }
+<div class="container">
+    <div class="tags">
+         <div class="tag">
+             <h1>Link</h1>
+               <div id="loading" class="hide spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+
+             <div class="form">
+                 <form asp-antiforgery="true" >
+                     <input type="hidden" asp-for="TotalTags">
+                     <input type="hidden" id="url" value=@Url.Action("Update", "Admin")>
+                    <input asp-for="@Model.Name"  />
+                    <input asp-for="@Model.TargetLink" />
+                    <button data-url="@Url.Action("Create", "Admin")" 
+                        id="add" type="submit" value="Add">Add</button>
+                 </form>
+             </div>
+
+             <hr>
+
+             <div class="links">
+              <div class="item">
+                    @foreach(var item  in @Model.Tags)
+                    {
+                        <form asp-antiforgery="true" >
+                            <div class="data-links">
+                                <div class="data-input">
+                                    <input data-key=@line data-name type="text" value="@item.Name"> 
+                                    <input data-key=@line data-link type="text" value="@item.TargetLink">
+                                    <input data-key=@line 
+                                    data-active  
+                                    data-type="update"  
+                                    data-url=@Url.Action("Update", "Admin")
+                                    data-id="@item.Id" 
+                                    id=@line 
+                                    type="checkbox" value="@item.Active" checked="@item.Active"  > 
+                                    <label for=@line >Active</label>
+                                    
+                                </div>
+                                <div class="data-action">
+                                    <button data-key=@line 
+                                            data-type="update" 
+                                            data-id="@item.Id" 
+                                            data-url=@Url.Action("Update", "Admin")
+                                            value="Update">Update</button>
+                                </div>  
+                            </div>
+                        </form> 
+                        { line++; }
+                    }
+                </div> 
+            </div>            
+         </div>
+         <div class="view">
+            <h1>View on Mobile</h1>
+         </div>
+    </div>
+</div>

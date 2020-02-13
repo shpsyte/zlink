@@ -24,6 +24,13 @@ namespace Data.Mappings {
             builder.Property (a => a.Deleted)
                 .HasDefaultValue (false);
 
+            builder.Property (p => p.Name).HasColumnType ("varchar(max)");
+            builder.Property (p => p.TargetLink).HasColumnType ("varchar(max)");
+            builder.Property (p => p.HideInfo).HasColumnType ("varchar(max)");
+            builder.Property (p => p.ShortText).HasColumnType ("varchar(max)");
+            builder.Property (p => p.Campaing).HasColumnType ("varchar(max)");
+            builder.Property (p => p.Parameters).HasColumnType ("varchar(max)");
+
         }
     }
 }

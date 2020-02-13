@@ -35,8 +35,8 @@ namespace Data.Repositories {
         }
 
         public async Task<T> GetOne (Expression<Func<T, bool>> where) {
-            
-            return await _dbSet.Where (where).FirstOrDefaultAsync();
+
+            return await _dbSet.Where (where).FirstOrDefaultAsync ();
         }
 
         public async Task<IEnumerable<T>> GetAll () {
@@ -44,10 +44,8 @@ namespace Data.Repositories {
         }
 
         public async Task<IEnumerable<T>> GetAll (Expression<Func<T, bool>> where) {
-            return await _dbSet.AsNoTracking().Where (where).ToListAsync ();
+            return await _dbSet.AsNoTracking ().Where (where).ToListAsync ();
         }
-
-         
 
         public async Task<T> GetById (params object[] key) {
             return await _dbSet.FindAsync (key);
@@ -61,6 +59,5 @@ namespace Data.Repositories {
             _context?.Dispose ();
         }
 
-      
     }
 }

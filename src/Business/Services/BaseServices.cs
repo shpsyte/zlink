@@ -8,9 +8,11 @@ namespace Business.Services {
     public abstract class BaseServices {
 
         private readonly INotificador _notificador;
+        protected readonly IUser _user;
 
-        protected BaseServices (INotificador notifiador) {
+        protected BaseServices (INotificador notifiador, IUser user) {
             _notificador = notifiador;
+            _user = user;
         }
 
         protected void Notificar (ValidationResult validationResult) {

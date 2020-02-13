@@ -22,6 +22,7 @@ namespace WebApp.Config {
             services.AddScoped<ITagDataServices, TagDataServices> ();
             services.AddScoped<INotificador, Notificador> ();
             services.AddScoped<IControllerServices, ControllerServices> ();
+            services.AddScoped<IUser, User> ();
 
             return services;
         }

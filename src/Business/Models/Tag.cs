@@ -7,6 +7,8 @@ namespace Business.Models {
             this.TagData = new HashSet<TagData> ();
         }
 
+        public int UserId { get; set; }
+
         public string Name { get; set; }
         public string TargetLink { get; set; }
 
@@ -24,6 +26,8 @@ namespace Business.Models {
         public DateTime CreateAt { get; set; }
 
         public IEnumerable<TagData> TagData { get; set; }
+
+        public ApplicationUser User { get; set; }
 
     }
 }

@@ -42,7 +42,7 @@ Todo Tela de Backend do Tag
  ✔ Ao criar uma nova tag, criar dentro de um container onde possa: desabilitar, alterar name e link @done(20-02-11 13:25)
  ✔ clicar no botão para alterar @done(20-02-11 16:10)
  ✔ No checkbox de ativo ou não disparar o evento para o servidor @done(20-02-11 16:19)
- ☐ para cada ação nas tags deverá atualizar a tela do mobile que representa a tela do Tag
+ ✔ para cada ação nas tags deverá atualizar a tela do mobile que representa a tela do Tag @done(20-02-12 13:08)
 
 Todo tela do profile com as tags
  ☐ Criar uma Action que recebe o username e renderiza as tags ativas
