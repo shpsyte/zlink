@@ -28,8 +28,8 @@ function CreateTagSucceful(data) {
     let divItem = NewElement("div");
     divItem.setAttribute("class", "item");
 
-    let form = NewElement("form");
-    form.setAttribute("asp-antiforgery", "true");
+    // let form = NewElement("form");
+    // form.setAttribute("asp-antiforgery", "true");
 
     let divDataLinks = NewElement("div");
     divDataLinks.setAttribute("class", "data-links");
@@ -90,8 +90,8 @@ function CreateTagSucceful(data) {
     divDataLinks.appendChild(divDataInput);
     divDataLinks.appendChild(divDataActions);
 
-    form.appendChild(divDataLinks);
-    divItem.appendChild(form);
+    //    form.appendChild(divDataLinks);
+    divItem.appendChild(divDataLinks);
 
     divLinks.prepend(divItem);
 

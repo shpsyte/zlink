@@ -66,5 +66,15 @@ namespace WebApp.Controllers {
             return View (tagDTO);
         }
 
+        [AllowAnonymous]
+        [Route ("app-store-data")]
+        public async Task<JsonResult> Store (string username, string targetLink) {
+
+            return Json (new {
+                username = username,
+                    targetLink = targetLink
+            });
+        }
+
     }
 }

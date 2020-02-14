@@ -13,10 +13,12 @@ function AddNewLi(ul, text) {
 function ToggleSpiner(behavior) {
     let loading = GetOne("#loading");
 
-    if (behavior === "hide") {
-        loading.classList.add("hide");
-    } else {
-        loading.classList.remove("hide");
+    if (loading !== null) {
+        if (behavior === "hide") {
+            loading.classList.add("hide");
+        } else {
+            loading.classList.remove("hide");
+        }
     }
 }
 

@@ -1,5 +1,7 @@
 @model TagDTO
-@{ var line = 1; }
+<form asp-antiforgery="true" >  </form> 
+ @{ var line = 1; }
+
 <div class="container">
     <div class="tags">
          <div class="tag">
@@ -9,14 +11,14 @@
               </div>
 
              <div class="form">
-                 <form asp-antiforgery="true" >
+                
                      <input type="hidden" asp-for="TotalTags">
                      <input type="hidden" id="url" value=@Url.Action("Update", "Admin")>
                     <input asp-for="@Model.Name"  />
                     <input asp-for="@Model.TargetLink" />
                     <button data-url="@Url.Action("Create", "Admin")" 
                         id="add" type="submit" value="Add">Add</button>
-                 </form>
+                 
              </div>
 
              <hr>
@@ -25,7 +27,7 @@
               <div class="item">
                     @foreach(var item  in @Model.Tags)
                     {
-                        <form asp-antiforgery="true" >
+                       
                             <div class="data-links">
                                 <div class="data-input">
                                     <input data-key=@line data-name type="text" value="@item.Name"> 
@@ -48,7 +50,7 @@
                                             value="Update">Update</button>
                                 </div>  
                             </div>
-                        </form> 
+                       
                         { line++; }
                     }
                 </div> 
@@ -59,3 +61,9 @@
          </div>
     </div>
 </div>
+
+
+@section Scripts
+{
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}

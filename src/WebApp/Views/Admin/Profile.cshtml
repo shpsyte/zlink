@@ -6,6 +6,10 @@
 <h1>@Model.Theme</h1>
 <h1>@Model.MainLinkImg</h1>
 
+<form asp-antiforgery="true">
+
+</form>
+
 <div class="container">
     <div class="tags">
          <div class="tag">
@@ -13,10 +17,17 @@
                  @foreach(var item  in @Model.Tags)
                     {
                         <div class="item">
-                            <a  href="@item.TargetLink" target="_blank" rel="noopener noreferrer">@item.Name</a>
+                            <a class="tag-register" href="@item.TargetLink" target="_blank" rel="noopener noreferrer">@item.Name</a>
                         </div> 
                     }
             </div>            
          </div>
     </div>
 </div>
+
+
+
+@section Scripts
+{
+<script src="~/js/registertag.js" asp-append-version="true"></script>
+}

@@ -47,7 +47,7 @@ Todo Tela de Backend do Tag
 Todo tela do profile com as tags
  ✔ Criar uma Action que recebe o username e renderiza as tags ativas @done(20-02-12 16:54)
  ✔ A pagina é simples e mobile @done(20-02-12 16:54)
- ☐ Enviar os dados do usuario/profile para esta pagina
+ ✔ Enviar os dados do usuario/profile para esta pagina @done(20-02-13 17:13)
  ☐ Para cada click nas tags devera registrar as informações do IP de origem
 
 Todo Tela de Backend para analise de dados de cada tag
