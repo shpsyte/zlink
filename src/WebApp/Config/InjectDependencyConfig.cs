@@ -18,11 +18,13 @@ namespace WebApp.Config {
             services.AddScoped<AppDbContext> ();
             services.AddScoped<ITagRepository, TagRepository> ();
             services.AddScoped<ITagDataRepository, TagDataRepository> ();
+            services.AddScoped<IUserRepository, UserRepository> ();
             services.AddScoped<ITagServices, TagServices> ();
             services.AddScoped<ITagDataServices, TagDataServices> ();
+            services.AddScoped<IUserServices, UserServices> ();
+            services.AddScoped<IProfileServices, ProfileServices> ();
             services.AddScoped<INotificador, Notificador> ();
             services.AddScoped<IControllerServices, ControllerServices> ();
-            services.AddScoped<IUser, User> ();
 
             return services;
         }

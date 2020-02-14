@@ -40,5 +40,10 @@ namespace WebApp.ViewModels {
         public IEnumerable<TagDataDTO> TagData { get; set; }
         public IEnumerable<TagDTO> Tags { get; set; }
 
+        public string Theme { get; set; }
+        public string UserName { get; set; }
+        public byte[] Avatar { get; set; }
+        public string MainLinkImg { get; set; }
+
     }
 }

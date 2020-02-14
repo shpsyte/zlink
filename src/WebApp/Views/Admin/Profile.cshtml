@@ -1,14 +1,19 @@
-@model IEnumerable<TagDTO>
+@model TagDTO
  
+
+
+<h1>@Model.Name</h1>
+<h1>@Model.Theme</h1>
+<h1>@Model.MainLinkImg</h1>
+
 <div class="container">
     <div class="tags">
          <div class="tag">
              <div class="profile-link">
-                 @foreach(var item  in @Model)
+                 @foreach(var item  in @Model.Tags)
                     {
                         <div class="item">
-                            <a href="@item.TargetLink" target="_blank" rel="noopener noreferrer">@item.Name</a>
-                        
+                            <a  href="@item.TargetLink" target="_blank" rel="noopener noreferrer">@item.Name</a>
                         </div> 
                     }
             </div>            

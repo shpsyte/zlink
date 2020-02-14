@@ -9,7 +9,7 @@ using Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories {
-    public abstract class Repository<T> : IRepository<T> where T : Entity {
+    public abstract class Repository<T> : IRepository<T> where T : class {
 
         protected readonly AppDbContext _context;
         protected readonly DbSet<T> _dbSet;

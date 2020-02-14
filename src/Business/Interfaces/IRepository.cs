@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Business.Models;
 
 namespace Business.Interfaces {
-    public interface IRepository<T> : IDisposable where T : Entity {
+    public interface IRepository<T> : IDisposable {
         Task Add (T entity);
         Task Update (T entity);
         Task Delete (T entity);

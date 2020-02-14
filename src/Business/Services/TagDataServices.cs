@@ -12,7 +12,7 @@ namespace Business.Services {
 
         private readonly ITagDataRepository _tagdata;
 
-        public TagDataServices (ITagDataRepository tagdata, INotificador notificador, IUser user) : base (notificador, user) {
+        public TagDataServices (ITagDataRepository tagdata, INotificador notificador, IUserServices user) : base (notificador, user) {
             _tagdata = tagdata;
         }
 

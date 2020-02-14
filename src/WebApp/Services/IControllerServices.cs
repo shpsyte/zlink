@@ -11,7 +11,8 @@ namespace WebApp.Services {
         ITagServices _tag { get; }
         ITagDataServices _tagData { get; }
         IMapper _mapper { get; }
-        IUser _user { get; }
+        IUserServices _user { get; }
+        IProfileServices _profile { get; }
 
         ILogger<ControllerServices> _looger { get; }
         INotificador _notificator { get; }

@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Business.Services {
-    public interface IUser {
+    public interface IUserServices {
         int Id { get; }
         string UserName ();
 
-        byte[] AvatarImage ();
         IEnumerable<Claim> GetClaimsIdentity ();
+        Task<byte[]> Avatar ();
 
     }
 

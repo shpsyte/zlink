@@ -16,7 +16,8 @@ namespace WebApp.Services {
         private readonly ILogger<ControllerServices> logger;
         private readonly INotificador notificator;
         private readonly IHubContext<NewTagHub> tagHub;
-        private readonly IUser user;
+        private readonly IUserServices user;
+        private readonly IProfileServices profile;
         public ControllerServices (
             ITagServices tagServices,
             ITagDataServices tagDataServices,
@@ -24,7 +25,8 @@ namespace WebApp.Services {
             ILogger<ControllerServices> logger,
             INotificador notificator,
             IHubContext<NewTagHub> tagHub,
-            IUser user) {
+            IUserServices user,
+            IProfileServices profile) {
             this.tagServices = tagServices;
             this.tagDataServices = tagDataServices;
             this.mapper = mapper;
@@ -32,9 +34,10 @@ namespace WebApp.Services {
             this.notificator = notificator;
             this.tagHub = tagHub;
             this.user = user;
+            this.profile = profile;
         }
 
-        public IUser _user => user;
+        public IUserServices _user => user;
         public ITagServices _tag => tagServices;
 
         public ITagDataServices _tagData => tagDataServices;
@@ -46,6 +49,7 @@ namespace WebApp.Services {
         public INotificador _notificator => notificator;
 
         public IHubContext<NewTagHub> _tagHub => tagHub;
+        public IProfileServices _profile => profile;
 
     }
 

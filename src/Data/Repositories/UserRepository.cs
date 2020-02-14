@@ -1,12 +1,18 @@
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using Business.Interfaces;
+using Business.Models;
+using Data.Context;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
-namespace Business.Services {
-    public class User : IUser {
+namespace Data.Repositories {
+    public class UserRepository : Repository<ApplicationUser>, IUserRepository {
         private readonly IHttpContextAccessor _accessor;
-
-        public User (IHttpContextAccessor accessor) { _accessor = accessor; }
+        public UserRepository (AppDbContext context, IHttpContextAccessor accessor) : base (context) {
+            _accessor = accessor;
+        }
 
         public int Id {
             get {
@@ -14,11 +20,8 @@ namespace Business.Services {
             }
         }
 
-        public byte[] AvatarImage () {
-            return _accessor.HttpContext.Session.Get ("User.Settings.AvatarImage");
-        }
-
         public IEnumerable<Claim> GetClaimsIdentity () {
+
             return _accessor.HttpContext.User.Claims;
         }
 
