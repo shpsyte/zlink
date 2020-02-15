@@ -51,14 +51,12 @@ Todo tela do profile com as tags
  ✔ Para cada click nas tags devera registrar as informações do IP de origem @done(20-02-14 18:12)
 
  Todo user
- ☐ Configurar o register para receber o email diferente do username
+ ✔ Configurar o register para receber o email diferente do username @done(20-02-15 15:39)
 
 
 
 Todo Tela de Backend para analise de dados de cada tag
  ☐ Criar uma acao que recebe a tag e retorna os dados de acesso
-
-
 
 
 FrontEnd

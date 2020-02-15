@@ -21,7 +21,9 @@ namespace WebApp.Config {
                 options.UseSqlServer (
                     configuration.GetConnectionString ("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser> ()
+            services.AddDefaultIdentity<ApplicationUser> (a => {
+                    a.User.RequireUniqueEmail = true;
+                })
                 .AddDefaultUI (UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<AppDbContext> ();
 
