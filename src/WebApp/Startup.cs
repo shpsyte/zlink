@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +22,10 @@ namespace WebApp {
         public void ConfigureServices (IServiceCollection services) {
             services.AddDbContextConfig (Configuration);
             services.AddIdentityConfig (Configuration);
+            services.AddIpServices (Configuration);
             services.AddInjectDependencyConfig ();
             services.AddMVCConfig ();
+
         }
 
         public void Configure (IApplicationBuilder app, IHostingEnvironment env) {

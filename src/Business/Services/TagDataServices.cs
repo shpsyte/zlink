@@ -11,9 +11,11 @@ namespace Business.Services {
     public class TagDataServices : BaseServices, ITagDataServices {
 
         private readonly ITagDataRepository _tagdata;
+        private readonly ITagRepository _tag;
 
-        public TagDataServices (ITagDataRepository tagdata, INotificador notificador, IUserServices user) : base (notificador, user) {
+        public TagDataServices (ITagDataRepository tagdata, INotificador notificador, IUserServices user, ITagRepository tag) : base (notificador, user) {
             _tagdata = tagdata;
+            _tag = tag;
         }
 
         public async Task Add (TagData entity) {
@@ -44,6 +46,10 @@ namespace Business.Services {
 
         public async Task<TagData> GetOne (Expression<Func<TagData, bool>> where) {
             return await _tagdata.GetOne (where);
+        }
+
+        public async Task<Tag> GetTaskById (Guid id) {
+            return await _tag.GetById (id);
         }
 
         public void Dispose () {

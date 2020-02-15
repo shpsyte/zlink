@@ -1,8 +1,12 @@
+using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Business.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using WebApp.Services;
 using WebApp.ViewModels;
 
@@ -68,11 +72,18 @@ namespace WebApp.Controllers {
 
         [AllowAnonymous]
         [Route ("app-store-data")]
-        public async Task<JsonResult> Store (string username, string targetLink) {
+        public async Task<JsonResult> Store (Guid id) {
+
+            var ip_data = JsonConvert.DeserializeObject<IPDTO> (await _context._ipServices.GetDataFromIp ());
+            var tagDTO = new TagDataDTO (id,
+                _context._ipServices.ipFromServer,
+                _context._ipServices.userAgent,
+                ip_data);
+
+            await _context._tagData.Add (_context._mapper.Map<TagData> (tagDTO));
 
             return Json (new {
-                username = username,
-                    targetLink = targetLink
+                success = OperacaoValida ()
             });
         }
 

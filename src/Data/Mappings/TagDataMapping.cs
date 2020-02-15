@@ -23,11 +23,14 @@ namespace Data.Mappings {
             builder.Property (p => p.PostalCode).HasColumnType ("varchar(150)");
             builder.Property (p => p.TimeZone).HasColumnType ("varchar(150)");
             builder.Property (p => p.Currency).HasColumnType ("varchar(150)");
-            builder.Property (p => p.Iso).HasColumnType ("varchar(150)");
+            builder.Property (p => p.CountryCode).HasColumnType ("varchar(150)");
             builder.Property (p => p.Organization).HasColumnType ("varchar(max)");
             builder.Property (p => p.WebBrowserClient).HasColumnType ("varchar(150)");
             builder.Property (p => p.SoClient).HasColumnType ("varchar(150)");
             builder.Property (p => p.ISP).HasColumnType ("varchar(max)");
+            builder.Property (p => p.Ip).HasColumnType ("varchar(max)");
+            builder.Property (p => p.CountryFlag).HasColumnType ("varchar(max)");
+            builder.Property (p => p.IpFromServer).HasColumnType ("varchar(max)");
 
         }
     }

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApp.Config {
-    public static partial class DbContextConfig {
+    public static class DbContextConfig {
         public static IServiceCollection AddDbContextConfig (this IServiceCollection services, IConfiguration configuration) {
 
             services.AddDbContext<AppDbContext> (options =>
@@ -15,4 +15,5 @@ namespace WebApp.Config {
         }
 
     }
+
 }

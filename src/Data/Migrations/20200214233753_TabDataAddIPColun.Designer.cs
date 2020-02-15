@@ -4,14 +4,16 @@ using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200214233753_TabDataAddIPColun")]
+    partial class TabDataAddIPColun
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,9 +160,6 @@ namespace Data.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("CountryCode")
-                        .HasColumnType("varchar(150)");
-
                     b.Property<string>("CountryFlag")
                         .HasColumnType("varchar(max)");
 
@@ -178,12 +177,12 @@ namespace Data.Migrations
                     b.Property<string>("Ip")
                         .HasColumnType("varchar(max)");
 
-                    b.Property<string>("IpFromServer")
-                        .HasColumnType("varchar(max)");
-
                     b.Property<bool>("IsMobile")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue(false);
+
+                    b.Property<string>("Iso")
+                        .HasColumnType("varchar(150)");
 
                     b.Property<string>("Lat")
                         .HasColumnType("varchar(150)");

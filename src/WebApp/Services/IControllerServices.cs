@@ -1,8 +1,10 @@
 using AutoMapper;
 using Business.Interfaces;
 using Business.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using WebApp.Hubs;
 
 namespace WebApp.Services {
@@ -17,6 +19,10 @@ namespace WebApp.Services {
         ILogger<ControllerServices> _looger { get; }
         INotificador _notificator { get; }
         IHubContext<NewTagHub> _tagHub { get; }
+
+        IHttpContextAccessor _accessor { get; }
+        IIpServices _ipServices { get; }
+
     }
 
 }
