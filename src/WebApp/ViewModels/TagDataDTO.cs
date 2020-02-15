@@ -12,27 +12,27 @@ namespace WebApp.ViewModels {
 
         public TagDataDTO (Guid id, string ipFromServer, string userAgent, IPDTO ip_data) : this () {
             this.TagId = id;
-            this.Ip = ip_data.ip;
+            this.Ip = ip_data?.ip;
             this.IpFromServer = ipFromServer;
-            this.City = ip_data.city;
-            this.Continent = ip_data.continent_name;
-            this.ContinentCode = ip_data.continent_code;
-            this.Country = ip_data.country_name;
-            this.CountryFlag = ip_data.country_flag;
+            this.City = ip_data?.city;
+            this.Continent = ip_data?.continent_name;
+            this.ContinentCode = ip_data?.continent_code;
+            this.Country = ip_data?.country_name;
+            this.CountryFlag = ip_data?.country_flag;
             this.Data = DateTime.UtcNow;
-            this.District = ip_data.district;
+            this.District = ip_data?.district;
             this.IsMobile = false;
-            this.CountryCode = ip_data.country_code2;
-            this.ISP = ip_data.isp;
-            this.Lat = ip_data.latitude;
-            this.Lon = ip_data.longitude;
-            this.Organization = ip_data.organization;
-            this.PostalCode = ip_data.zipcode;
-            this.RegionName = ip_data.state_prov;
-            this.Region = ip_data.time_zone.name;
-            this.SoClient = ip_data.geoname_id;
-            this.Currency = ip_data.currency.code;
-            this.TimeZone = ip_data.time_zone.current_time;
+            this.CountryCode = ip_data?.country_code2;
+            this.ISP = ip_data?.isp;
+            this.Lat = ip_data?.latitude;
+            this.Lon = ip_data?.longitude;
+            this.Organization = ip_data?.organization;
+            this.PostalCode = ip_data?.zipcode;
+            this.RegionName = ip_data?.state_prov;
+            this.Region = ip_data?.time_zone?.name;
+            this.SoClient = ip_data?.geoname_id;
+            this.Currency = ip_data?.currency?.code;
+            this.TimeZone = ip_data?.time_zone?.current_time;
             this.WebBrowserClient = userAgent;
         }
 

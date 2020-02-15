@@ -73,14 +73,19 @@ namespace WebApp.Controllers {
         [AllowAnonymous]
         [Route ("app-store-data")]
         public async Task<JsonResult> Store (Guid id) {
+            IPDTO ip_data = null;
+            try {
+                ip_data = JsonConvert.DeserializeObject<IPDTO> (await _context._ipServices.GetDataFromIp ());
+            } catch {
+                ip_data = new IPDTO ();
+            }
 
-            var ip_data = JsonConvert.DeserializeObject<IPDTO> (await _context._ipServices.GetDataFromIp ());
             var tagDTO = new TagDataDTO (id,
                 _context._ipServices.ipFromServer,
                 _context._ipServices.userAgent,
                 ip_data);
 
-            await _context._tagData.Add (_context._mapper.Map<TagData> (tagDTO));
+            var task = _context._tagData.Add (_context._mapper.Map<TagData> (tagDTO));
 
             return Json (new {
                 success = OperacaoValida ()
