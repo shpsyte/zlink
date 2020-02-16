@@ -59,6 +59,9 @@ namespace WebApp.Controllers {
         [Route ("p/{username?}")]
         [Route ("/{username}")]
         public async Task<IActionResult> Profile (string username) {
+
+            var theme = await _context._profile.Theme (username);
+
             var tagDTO = new TagDTO () {
                 Tags = _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagByUserName (username)),
                 Theme = await _context._profile.Theme (username),

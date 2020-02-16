@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-
+   
     <header>
-        @* @{ Html.RenderPartialIf("_nav", SignInManager.IsSignedIn(User)); }  *@
-        <partial name="_nav" />
+         @RenderSection("navbar", false) 
     </header>
+
 
     <div class="container">
         <partial name="_CookieConsentPartial" />
@@ -33,11 +33,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    @RenderSection("footer", false) 
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

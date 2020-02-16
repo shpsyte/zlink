@@ -1,22 +1,22 @@
 using System.Threading.Tasks;
 using Business.Interfaces;
 using Business.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Business.Services {
 
     public class ProfileServices : IProfileServices {
         private readonly IUserRepository _user;
-        private ApplicationUser User;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private ApplicationUser UserApp;
 
-        public ProfileServices (IUserRepository user) {
+        public ProfileServices (IUserRepository user, UserManager<ApplicationUser> userManager) {
             _user = user;
+            _userManager = userManager;
         }
 
         public async Task<ApplicationUser> GetUserByName (string username) {
-            if (User != null)
-                User = (await _user.GetOne (a => a.UserName == username));
-
-            return User;
+            return UserApp??(await _user.GetOne (a => a.UserName == username));
         }
 
         public async Task<string> CssFile (string username) {
@@ -32,6 +32,7 @@ namespace Business.Services {
         }
 
         public async Task<string> Theme (string username) {
+
             return (await GetUserByName (username))?.Theme;
         }
 
