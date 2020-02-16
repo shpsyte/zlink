@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Business.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -14,15 +16,18 @@ namespace WebApp.Areas.Identity.Pages.Account.Manage {
     public partial class IndexModel : PageModel {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+
         private readonly IEmailSender _emailSender;
 
         public IndexModel (
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender) {
+            IEmailSender emailSender
+        ) {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+
         }
 
         public string Username { get; set; }
@@ -44,7 +49,10 @@ namespace WebApp.Areas.Identity.Pages.Account.Manage {
             [Display (Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
-            [Display (Name = "First Name")]
+            public IFormFile avatarImage { get; set; }
+            public byte[] Avatar { get; set; }
+
+            [Display (Name = "Name")]
             public string FirstName { get; set; }
 
             [Display (Name = "Last Name")]
@@ -59,6 +67,19 @@ namespace WebApp.Areas.Identity.Pages.Account.Manage {
 
             [Display (Name = "Custom Css")]
             public string CssFile { get; set; }
+
+            public bool RemoveImg { get; set; }
+
+            public string GetImgConverted {
+                get {
+                    byte[] data = this.Avatar;
+                    if (data == null) {
+                        data = new byte[0];
+                    }
+                    return $"data:image/jpeg;base64,{Convert.ToBase64String (data)}";
+                }
+            }
+
         }
 
         public async Task<IActionResult> OnGetAsync () {
@@ -75,6 +96,7 @@ namespace WebApp.Areas.Identity.Pages.Account.Manage {
             var mainLinkImg = user.MainLinkImg;
             var theme = user.Theme;
             var cssFile = user.CssFile;
+            var avatar = user.Avatar;
 
             Username = userName;
 
@@ -85,7 +107,9 @@ namespace WebApp.Areas.Identity.Pages.Account.Manage {
                 FirstName = firstName,
                 LastName = lastName,
                 Theme = theme,
-                MainLinkImg = mainLinkImg
+                MainLinkImg = mainLinkImg,
+                Avatar = avatar,
+                RemoveImg = false
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync (user);
@@ -127,6 +151,23 @@ namespace WebApp.Areas.Identity.Pages.Account.Manage {
             user.LastName = Input.LastName;
             user.Theme = Input.Theme;
             user.MainLinkImg = Input.MainLinkImg;
+
+            if (Input.RemoveImg == false) {
+
+                using (var memoryStream = new MemoryStream ()) {
+
+                    try {
+                        Input.avatarImage.CopyTo (memoryStream);
+                        user.Avatar = memoryStream.ToArray ();
+                    } catch {
+
+                    }
+
+                }
+
+            } else {
+                user.Avatar = null;
+            }
 
             var userResutl = await _userManager.UpdateAsync (user);
             if (!userResutl.Succeeded) {
