@@ -20,6 +20,7 @@ namespace WebApp.ViewModels {
         public int UserId { get; set; }
 
         public string Name { get; set; }
+
         public string TargetLink { get; set; }
         public Nullable<DateTime> Start { get; set; }
         public Nullable<DateTime> End { get; set; }

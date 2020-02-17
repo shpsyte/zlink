@@ -13,14 +13,12 @@
               </div>
 
              <div class="form">
-                
                      <input type="hidden" asp-for="TotalTags">
                      <input type="hidden" id="url" value=@Url.Action("Update", "Admin")>
                     <input asp-for="@Model.Name"  />
                     <input asp-for="@Model.TargetLink" />
                     <button data-url="@Url.Action("Create", "Admin")" 
                         id="add" type="submit" value="Add">Add</button>
-                 
              </div>
 
              <hr>
@@ -60,6 +58,21 @@
          </div>
          <div class="view">
             <h1>View on Mobile</h1>
+
+            <ul id="mobile">
+                 @foreach(var item  in @Model.Tags)
+                    {
+                        @if (item.Active)
+                        {
+                           <li data-mobile-id="@item.Id">@item.Name</li>
+
+                        }
+                    }
+            </ul>
+
+
+
+
          </div>
     </div>
 </div>

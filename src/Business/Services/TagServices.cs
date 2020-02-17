@@ -74,7 +74,7 @@ namespace Business.Services {
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagByUserName (string username) {
-            var data = (await _tag.GetAll (a => a.Deleted == false && a.User.UserName == username))
+            var data = (await _tag.GetAll (a => a.Deleted == false && a.Active == true && a.User.UserName == username))
                 .OrderBy (a => a.IsPriority);
 
             return data;

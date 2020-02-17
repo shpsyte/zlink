@@ -4,9 +4,10 @@ var Print = console.log.bind(document);
 var NewElement = document.createElement.bind(document);
 var NewText = document.createTextNode.bind(document);
 
-function AddNewLi(ul, text) {
+function AddNewLi(ul, id, text) {
     let li = NewElement("li");
-    li.appendChild(text);
+    li.appendChild(NewText(text));
+    li.setAttribute("data-mobile-id", id);
     ul.appendChild(li);
 }
 

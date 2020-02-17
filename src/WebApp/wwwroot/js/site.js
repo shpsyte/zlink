@@ -9,13 +9,18 @@ add.addEventListener("click", () => {
     let targetlink = GetOne("#TargetLink").value;
     let url = add.getAttribute("data-url");
     let data = { name, targetlink };
-    _post(url, data, CreateTagSucceful);
+    _post(url, data, CreateTag);
 
     this.disabled = false;
 });
 
 // Js para adicionar um novo item na tabela
-function CreateTagSucceful(data) {
+function CreateTag(data) {
+    CreateElementForTag(data);
+    CreateElementForMobile(data);
+}
+
+function CreateElementForTag(data) {
     let total = GetOne("#TotalTags");
     let nextItem = total.value;
     ++nextItem;
@@ -98,6 +103,12 @@ function CreateTagSucceful(data) {
     total.value = nextItem;
 }
 
+function CreateElementForMobile(data) {
+    let linkDto = data.data;
+    let ul = GetOne("#mobile");
+    AddNewLi(ul, linkDto.id, linkDto.name);
+}
+
 // JS para alterar uma tag existe
 let btnUpdate = GetAll('*[data-type="update"]');
 
@@ -130,4 +141,21 @@ function UpdateTagSucceful(data) {
     name.value = linkDto.name;
     targetlink.value = linkDto.targetLink;
     active.checked = linkDto.active;
+
+    UpdateMobile(linkDto.id, linkDto.name, linkDto.active);
+}
+
+function UpdateMobile(id, name, activeItem) {
+    let li = GetOne(`li[data-mobile-id="${id}"]`);
+
+    if (li !== null) {
+        if (!activeItem) {
+            li.parentNode.removeChild(li);
+        } else {
+            li.innerHTML = name;
+        }
+    } else {
+        let ul = GetOne("#mobile");
+        AddNewLi(ul, id, name);
+    }
 }

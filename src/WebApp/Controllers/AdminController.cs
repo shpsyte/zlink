@@ -44,7 +44,7 @@ namespace WebApp.Controllers {
             var dataObj = await _context._tag.GetOne (a => a.Id == tagDTO.Id);
             dataObj.Name = tagDTO.Name;
             dataObj.TargetLink = tagDTO.TargetLink;
-            dataObj.Active = dataObj.Active;
+            dataObj.Active = tagDTO.Active;
 
             await _context._tag.Update (dataObj);
 
