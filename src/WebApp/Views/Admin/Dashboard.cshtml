@@ -1,0 +1,104 @@
+@model Dashboard
+
+
+
+<div class="container">
+    <div class="count">
+        <h1>@Model.Qtd</h1>
+    </div>
+
+    <div class="dataReport">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th>Qtd</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @foreach(var item in Model.DashboardDate)
+                    {
+                        <td>@item.Key</td>
+                        <td>@item.Qtd</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="regionReport">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Region</th>
+                <th>Qtd</th>
+            </tr>
+            </thead>
+            <tbody>
+                
+                    @foreach(var item in Model.DashboardRegion)
+                    {   
+                        <tr>
+                        <td>@item.Key</td>
+                        <td>@item.Qtd</td>
+                        </tr>
+                    }
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="cityReport">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>City</th>
+                <th>Qtd</th>
+            </tr>
+            </thead>
+            <tbody>
+                
+                    @foreach(var item in Model.DashboardCity)
+                    {
+                        <tr>
+                            <td>@item.Key</td>
+                            <td>@item.Qtd</td>
+                         </tr>
+                    }
+               
+            </tbody>
+        </table>
+    </div>
+
+
+     <div class="dataclick">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Region</th>
+                <th>Data</th>
+                <th>Lon</th>
+                <th>Lat</th>
+            </tr>
+            </thead>
+            <tbody> 
+                    @foreach(var item in Model.Tag.TagData)
+                    {
+                         <tr> 
+                            <td>@item.RegionName</td>
+                            <td>@item.Data</td>
+                            <td>@item.Lon</td>
+                            <td>@item.Lat</td>
+                         </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+

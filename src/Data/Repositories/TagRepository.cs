@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Business.Interfaces;
 using Business.Models;
@@ -13,5 +15,15 @@ namespace Data.Repositories {
             return await _dbSet.Include (a => a.TagData).ToListAsync ();
 
         }
+
+        public async Task<Tag> GetTagWithAllTagData (Guid id) {
+
+            return await _dbSet
+                .Where (a => a.Deleted == false)
+                .AsNoTracking ()
+                .Include (a => a.TagData)
+                .FirstOrDefaultAsync (a => a.Id == id);
+        }
+
     }
 }

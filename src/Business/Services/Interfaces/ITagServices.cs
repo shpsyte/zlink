@@ -20,5 +20,7 @@ namespace Business.Services {
         Task<IEnumerable<Tag>> GetAllTagByUserName (string username);
         Task<int> GetAllTagActivedCount ();
 
+        Task<Tag> GetTagWithAllTagData (Guid id);
+
     }
 }

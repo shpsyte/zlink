@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Business.Services;
 
 namespace WebApp.ViewModels {
     public class TagDTO {
@@ -12,6 +14,17 @@ namespace WebApp.ViewModels {
             this.Active = true;
             this.Deleted = false;
 
+        }
+
+        public TagDTO (IEnumerable<TagDTO> tag) : this () {
+            this.Tags = tag;
+        }
+
+        public TagDTO (string username, IProfileServices profile, IEnumerable<TagDTO> tag) : this (tag) {
+            Theme = profile.Theme (username).Result;
+            UserName = username;
+            Avatar = profile.Avatar (username).Result;
+            MainLinkImg = profile.MainLinkImg (username).Result;
         }
 
         [Key]
@@ -35,16 +48,22 @@ namespace WebApp.ViewModels {
         public bool Deleted { get; set; }
         public DateTime CreateAt { get; set; }
 
-        public int TotalTags { get; set; }
+        /// unmaped properties
+
+        public int? TotalTags {
+            get {
+                return this.Tags?.Count ();
+            }
+        }
         public int key { get; set; }
 
         public IEnumerable<TagDataDTO> TagData { get; set; }
         public IEnumerable<TagDTO> Tags { get; set; }
 
-        public string Theme { get; set; }
-        public string UserName { get; set; }
-        public byte[] Avatar { get; set; }
-        public string MainLinkImg { get; set; }
+        public string Theme { get; }
+        public string UserName { get; }
+        public byte[] Avatar { get; }
+        public string MainLinkImg { get; }
 
     }
 }

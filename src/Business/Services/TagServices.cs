@@ -51,6 +51,11 @@ namespace Business.Services {
             return data;
         }
 
+        public async Task<Tag> GetTagWithAllTagData (Guid id) {
+
+            return await _tag.GetTagWithAllTagData (id);
+        }
+
         public async Task<Tag> GetOne (Expression<Func<Tag, bool>> where) {
             var lambda = InjectCurrentUser (where);
             return await _tag.GetOne (lambda);
