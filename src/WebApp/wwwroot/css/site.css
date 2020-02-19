@@ -18,6 +18,16 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.dashboard {
+    display: flex;
+    justify-items: flex-start;
+    align-content: space-around;
+}
+
+.dashboard div {
+    flex: 1;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

@@ -18,7 +18,6 @@ namespace WebApp.Controllers {
             return new Dashboard (
                 _context._mapper.Map<TagDTO> (await _context._tag.GetTagWithAllTagData (id)),
                 _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagByUserName (_context._user.UserName ()))
-
             );
         }
 
@@ -59,9 +58,9 @@ namespace WebApp.Controllers {
         }
 
         [Route ("app-data-dashboard/{id}")]
-        public async Task<JsonResult> DateToDashboard (Guid id) {
+        public async Task<JsonResult> DashboardDate (Guid id) {
             var dashboard = await GetDataToDashBoard (id);
-            return Json (dashboard);
+            return Json (dashboard.DashboardDate);
         }
 
         [AllowAnonymous]

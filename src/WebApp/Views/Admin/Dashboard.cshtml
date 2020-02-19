@@ -1,104 +1,106 @@
 @model Dashboard
 
+<input type="hidden" asp-for="@Model.Id" />
+<input type="hidden" id="url" value="@Url.Action("DashboardDate", "Admin")" />
 
+@Url.Action("DashboardDate", "Admin")
 
 <div class="container">
-    <div class="count">
-        <h1>@Model.Qtd</h1>
+    <div class="dashboard">
+        <div class="right">
+            <div class="count">
+                <h1>@Model.Qtd</h1>
+            </div>
+        </div>
+        <div class="left">
+
+                <div class="dataReport">
+                    <partial name="Dashboard.Date" model="@Model.DashboardDate" />
+                </div>
+
+                <!-- <div class="regionReport">
+                    <partial name="Dashboard.Region" model="@Model.DashboardRegion" />
+                </div>
+
+                <div class="cityReport">
+                    <partial name="Dashboard.City" model="@Model.DashboardCity" />
+                </div>
+
+
+                <div class="dataclick">
+                    <partial name="Dashboard.Click" model="@Model.Tag.TagData" />
+                </div> -->
+
+
+        </div>
     </div>
+    <div>
+          <div class="graph">
+                <div id="chart_div" style="width: 100%; height: 500px;"></div>
 
-    <div class="dataReport">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Data</th>
-                <th>Qtd</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    @foreach(var item in Model.DashboardDate)
-                    {
-                        <td>@item.Key</td>
-                        <td>@item.Qtd</td>
-                    }
-                </tr>
-            </tbody>
-        </table>
+            </div>
     </div>
-
-
-    <div class="regionReport">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Region</th>
-                <th>Qtd</th>
-            </tr>
-            </thead>
-            <tbody>
-                
-                    @foreach(var item in Model.DashboardRegion)
-                    {   
-                        <tr>
-                        <td>@item.Key</td>
-                        <td>@item.Qtd</td>
-                        </tr>
-                    }
-                
-            </tbody>
-        </table>
-    </div>
-
-    <div class="cityReport">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>City</th>
-                <th>Qtd</th>
-            </tr>
-            </thead>
-            <tbody>
-                
-                    @foreach(var item in Model.DashboardCity)
-                    {
-                        <tr>
-                            <td>@item.Key</td>
-                            <td>@item.Qtd</td>
-                         </tr>
-                    }
-               
-            </tbody>
-        </table>
-    </div>
-
-
-     <div class="dataclick">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Region</th>
-                <th>Data</th>
-                <th>Lon</th>
-                <th>Lat</th>
-            </tr>
-            </thead>
-            <tbody> 
-                    @foreach(var item in Model.Tag.TagData)
-                    {
-                         <tr> 
-                            <td>@item.RegionName</td>
-                            <td>@item.Data</td>
-                            <td>@item.Lon</td>
-                            <td>@item.Lat</td>
-                         </tr>
-                    }
-            </tbody>
-        </table>
-    </div>
-
-
 </div>
 
 
+@section Scripts
+{
+    
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+          var id = GetOne("#Id").value
+          var url = GetOne("#url").value
+          Print(id, url);
+
+  /*        var jsonData = $.ajax({
+          url: "getData.php",
+          dataType: "json",
+          async: false
+          }).responseText;
+          
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(jsonData);
+
+    */
+      /*
+       {
+        "cols": [
+                {"id":"","label":"Topping","pattern":"","type":"string"},
+                {"id":"","label":"Slices","pattern":"","type":"number"}
+            ],
+        "rows": [
+                {"c":[{"v":"Mushrooms","f":null},{"v":3,"f":null}]},
+                {"c":[{"v":"Onions","f":null},{"v":1,"f":null}]},
+                {"c":[{"v":"Olives","f":null},{"v":1,"f":null}]},
+                {"c":[{"v":"Zucchini","f":null},{"v":1,"f":null}]},
+                {"c":[{"v":"Pepperoni","f":null},{"v":2,"f":null}]}
+            ]
+        }
+*/
+/*        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales'],
+          ['2013',  1000],
+          ['2014',  1170],
+          ['2015',  660],
+          ['2016',  1030]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+*/
+//        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+  //      chart.draw(data, options);
+      }
+    </script>
+
+}
 

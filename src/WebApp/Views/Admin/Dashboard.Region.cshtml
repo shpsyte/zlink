@@ -1,0 +1,21 @@
+@model IEnumerable<DashboardRegion>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Region</th>
+        <th>Qtd</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+            @foreach(var item in Model)
+            {   
+                <tr>
+                <td>@item.Key</td>
+                <td>@item.Qtd</td>
+                </tr>
+            }
+        
+    </tbody>
+</table>

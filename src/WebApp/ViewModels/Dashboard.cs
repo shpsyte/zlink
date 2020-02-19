@@ -20,15 +20,21 @@ namespace WebApp.ViewModels {
             this.Tags = tags;
         }
 
-        public Guid Id { get; set; } public DateTime ReportDate { get; set; } public int Qtd {
+        public Guid Id { get; set; }
+
+        public DateTime ReportDate { get; set; }
+
+        public int Qtd {
             get {
                 return Tag.TagData.Count ();
             }
         }
-        public TagDTO Tag { get; set; } public IEnumerable<TagDTO> Tags { get; set; } public IEnumerable<DashboardDate> DashboardDate {
+        public TagDTO Tag { get; set; }
+        public IEnumerable<TagDTO> Tags { get; set; }
+        public IEnumerable<DashboardDate> DashboardDate {
             get {
                 return from tagdata in this.Tag.TagData
-                group tagdata by tagdata.Data.ToString ("dd/mm/YYYY")
+                group tagdata by tagdata.Data.ToLocalTime ().ToString ("dd/MM/yyyy")
                 into g
                 orderby g.Key
                 select new DashboardDate { Key = g.Key, Qtd = g.Count () };
