@@ -57,6 +57,10 @@ Todo tela do profile com as tags
 
 Todo Tela de Backend para analise de dados de cada tag
  ☐ Criar uma acao que recebe a tag e retorna os dados de acesso
+   - Dasboard
+   - Qtde Clique, Cliques por dia
+   - Grafico por dia
+   - Qtde por Ciadade, Qtde por Regiao
 
 
 FrontEnd
