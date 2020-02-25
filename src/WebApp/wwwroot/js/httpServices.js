@@ -25,9 +25,11 @@ function ToggleSpiner(behavior) {
 
 function _get(url, callback, errorcallback) {
     ToggleSpiner("show");
+
     $.ajax({
         type: "GET",
         url: url,
+        //  data: data,
         error: function(data) {
             if (typeof errorcallback !== "undefined") errorcallback(data);
         },

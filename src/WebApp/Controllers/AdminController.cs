@@ -15,10 +15,7 @@ namespace WebApp.Controllers {
         public AdminController (IControllerServices services) : base (services) { }
 
         private async Task<Dashboard> GetDataToDashBoard (Guid id) {
-            return new Dashboard (
-                _context._mapper.Map<TagDTO> (await _context._tag.GetTagWithAllTagData (id)),
-                _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagByUserName (_context._user.UserName ()))
-            );
+            return new Dashboard (_context._mapper.Map<TagDTO> (await _context._tag.GetTagWithAllTagData (id)));
         }
 
         [Route ("app-link")]
@@ -57,7 +54,7 @@ namespace WebApp.Controllers {
             return View (await GetDataToDashBoard (id));
         }
 
-        [Route ("app-data-dashboard/{id}")]
+        [Route ("app-data-dashboard/{id?}")]
         public async Task<JsonResult> DashboardDate (Guid id) {
             var dashboard = await GetDataToDashBoard (id);
             return Json (dashboard.DashboardDate);

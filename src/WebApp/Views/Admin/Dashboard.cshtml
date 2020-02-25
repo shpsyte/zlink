@@ -1,11 +1,11 @@
 @model Dashboard
 
 <input type="hidden" asp-for="@Model.Id" />
-<input type="hidden" id="url" value="@Url.Action("DashboardDate", "Admin")" />
+<input type="hidden" id="url" name="url" value="@Url.Action("DashboardDate", "Admin")" />
+ 
+<!-- refatorar --> 
 
-@Url.Action("DashboardDate", "Admin")
 
-<!-- refatorar -->
 
 <div class="container">
     <div class="dashboard">
@@ -39,7 +39,6 @@
     <div>
           <div class="graph">
                 <div id="chart_div" style="width: 100%; height: 500px;"></div>
-
             </div>
     </div>
 </div>
@@ -55,21 +54,15 @@
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-
-          var id = GetOne("#Id").value
-          var url = GetOne("#url").value
-          Print(id, url);
-
-  /*        var jsonData = $.ajax({
-          url: "getData.php",
-          dataType: "json",
-          async: false
-          }).responseText;
+         var id = GetOne("#Id").value
+          var url = GetOne("#url").value + '/' + id
           
-      // Create our data table out of JSON data loaded from server.
-      var data = new google.visualization.DataTable(jsonData);
+           
 
-    */
+           _get(url, success)
+ 
+ 
+    
       /*
        {
         "cols": [
@@ -102,6 +95,44 @@
 //        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
   //      chart.draw(data, options);
       }
+
+      function success(data)
+      {
+ 
+       
+
+      // Create our data table out of JSON data loaded from server.
+     //  var data = new google.visualization.DataTable("jsonData");
+
+      var dataCol = new google.visualization.DataTable();
+    dataCol.addColumn('string', 'date');
+    dataCol.addColumn('number', 'qtd');
+    for(i = 0; i < data.length; i++)
+    dataCol.addRow([data[i].key, data[i].qtd]);
+
+    //
+     
+ 
+        // Create the data table.
+     
+        
+
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Days',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+         var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(dataCol, options);
+       
+      }
+
+      
+          
+        
+
     </script>
 
 }

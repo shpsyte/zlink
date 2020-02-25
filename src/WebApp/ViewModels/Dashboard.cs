@@ -16,9 +16,9 @@ namespace WebApp.ViewModels {
             this.Tag = tag;
         }
 
-        public Dashboard (TagDTO tag, IEnumerable<TagDTO> tags) : this (tag) {
-            this.Tags = tags;
-        }
+        // public Dashboard (TagDTO tag, IEnumerable<TagDTO> tags) : this (tag) {
+        //     this.Tags = tags;
+        // }
 
         public Guid Id { get; set; }
 
@@ -30,7 +30,7 @@ namespace WebApp.ViewModels {
             }
         }
         public TagDTO Tag { get; set; }
-        public IEnumerable<TagDTO> Tags { get; set; }
+        //  public IEnumerable<TagDTO> Tags { get; set; }
         public IEnumerable<DashboardDate> DashboardDate {
             get {
                 return from tagdata in this.Tag.TagData
