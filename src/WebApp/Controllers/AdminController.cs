@@ -56,8 +56,7 @@ namespace WebApp.Controllers {
 
         [Route ("app-data-dashboard/{id?}")]
         public async Task<JsonResult> DashboardDate (Guid id) {
-            var dashboard = await GetDataToDashBoard (id);
-            return Json (dashboard.DashboardDate);
+            return Json ((await GetDataToDashBoard (id)).DashboardDate);
         }
 
         [AllowAnonymous]

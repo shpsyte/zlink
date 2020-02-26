@@ -27,6 +27,21 @@ namespace WebApp.Extensions {
 
             htmlHelper.RenderPartialAsync (partialViewName).GetAwaiter ().GetResult ();
         }
+
+        public static void NotRenderPartialIf (this IHtmlHelper htmlHelper, string partialViewName, string view) {
+            var splitValue = view.Split (';');
+            var currentAction = (htmlHelper.ViewContext.RouteData.Values["action"] ?? string.Empty)
+                .ToString ()
+                .ToLower ()
+                .UnDash ();
+
+            var hasAction = splitValue.Contains (currentAction);
+
+            if (hasAction)
+                return;
+
+            htmlHelper.RenderPartialAsync (partialViewName).GetAwaiter ().GetResult ();
+        }
     }
 
 }
