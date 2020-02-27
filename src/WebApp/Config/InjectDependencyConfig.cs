@@ -4,7 +4,9 @@ using Business.Notifications;
 using Business.Services;
 using Data.Context;
 using Data.Repositories;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
+using WebApp.Extensions;
 using WebApp.Services;
 
 namespace WebApp.Config {
@@ -25,6 +27,7 @@ namespace WebApp.Config {
             services.AddScoped<IProfileServices, ProfileServices> ();
             services.AddScoped<INotificador, Notificador> ();
             services.AddScoped<IControllerServices, ControllerServices> ();
+            services.AddSingleton<IEmailSender, EmailSender> ();
 
             return services;
         }

@@ -21,10 +21,15 @@ namespace WebApp.Config {
                 options.UseSqlServer (
                     configuration.GetConnectionString ("DefaultConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser> (a => {
+            // services.AddDefaultIdentity<ApplicationUser> (a => {
+            //         a.User.RequireUniqueEmail = true;
+            //     })
+            //     .AddDefaultUI (UIFramework.Bootstrap4)
+            //     .AddEntityFrameworkStores<AppDbContext> ();
+            services.AddIdentity<ApplicationUser, IdentityRole<int>> (a => {
                     a.User.RequireUniqueEmail = true;
                 })
-                .AddDefaultUI (UIFramework.Bootstrap4)
+                .AddDefaultTokenProviders ()
                 .AddEntityFrameworkStores<AppDbContext> ();
 
             return services;
