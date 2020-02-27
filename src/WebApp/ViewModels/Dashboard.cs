@@ -11,9 +11,8 @@ namespace WebApp.ViewModels {
 
         }
 
-        public Dashboard (TagDTO tag) : this () {
-            this.Id = tag.Id;
-            this.Tag = tag;
+        public Dashboard (Guid id) : this () {
+            this.Id = id;
         }
 
         // public Dashboard (TagDTO tag, IEnumerable<TagDTO> tags) : this (tag) {
@@ -24,41 +23,41 @@ namespace WebApp.ViewModels {
 
         public DateTime ReportDate { get; set; }
 
-        public int Qtd {
-            get {
-                return Tag.TagData.Count ();
-            }
-        }
-        public TagDTO Tag { get; set; }
+        // public int Qtd {
+        //     get {
+        //         return Tag.TagData.Count ();
+        //     }
+        // }
+       //  public TagDTO Tag { get; set; }
         //  public IEnumerable<TagDTO> Tags { get; set; }
-        public IEnumerable<DashboardDate> DashboardDate {
-            get {
-                return from tagdata in this.Tag.TagData
-                group tagdata by tagdata.Data.ToLocalTime ().ToString ("dd/MM/yyyy")
-                into g
-                orderby g.Key
-                select new DashboardDate { Key = g.Key, Qtd = g.Count () };
-            }
-        }
-        public IEnumerable<DashboardRegion> DashboardRegion {
-            get {
-                return from tagdata in this.Tag.TagData
-                group tagdata by tagdata.RegionName
-                into g
-                orderby g.Key
-                select new DashboardRegion { Key = g.Key, Qtd = g.Count () };
-            }
-        }
-        public IEnumerable<DashboardCity> DashboardCity {
-            get {
-                return from tagdata in this.Tag.TagData
-                group tagdata by tagdata.City
-                into g
-                orderby g.Key
-                select new DashboardCity { Key = g.Key, Qtd = g.Count () };
+        // public IEnumerable<DashboardDate> DashboardDate {
+        //     get {
+        //         return from tagdata in this.Tag.TagData
+        //         group tagdata by tagdata.Data.ToLocalTime ().ToString ("dd/MM/yyyy")
+        //         into g
+        //         orderby g.Key
+        //         select new DashboardDate { Key = g.Key, Qtd = g.Count () };
+        //     }
+        // }
+        // public IEnumerable<DashboardRegion> DashboardRegion {
+        //     get {
+        //         return from tagdata in this.Tag.TagData
+        //         group tagdata by tagdata.RegionName
+        //         into g
+        //         orderby g.Key
+        //         select new DashboardRegion { Key = g.Key, Qtd = g.Count () };
+        //     }
+        // }
+        // public IEnumerable<DashboardCity> DashboardCity {
+        //     get {
+        //         return from tagdata in this.Tag.TagData
+        //         group tagdata by tagdata.City
+        //         into g
+        //         orderby g.Key
+        //         select new DashboardCity { Key = g.Key, Qtd = g.Count () };
 
-            }
-        }
+        //     }
+        // }
     }
 
     public class DashboardDate {

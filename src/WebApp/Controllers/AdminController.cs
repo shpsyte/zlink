@@ -15,7 +15,7 @@ namespace WebApp.Controllers {
         public AdminController (IControllerServices services) : base (services) { }
 
         private async Task<Dashboard> GetDataToDashBoard (Guid id) {
-            return new Dashboard (_context._mapper.Map<TagDTO> (await _context._tag.GetTagWithAllTagData (id)));
+            return new Dashboard (id);
         }
 
         [Route ("app-link")]

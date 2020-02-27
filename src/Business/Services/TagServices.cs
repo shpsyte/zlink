@@ -83,7 +83,7 @@ namespace Business.Services {
         public async Task<IEnumerable<Tag>> GetAllTagByUserName (string username) {
             return (await _tag.GetAll (a => a.Deleted == false && a.Active == true && a.User.UserName == username))
                 .OrderByDescending (a => a.Active)
-                .ThenByDescending (a => a.CreateAt);
+                .ThenByDescending (a => a.CreateAt); 
         }
 
         public async Task<int> GetAllTagActivedCount () {
