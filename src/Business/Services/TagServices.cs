@@ -74,15 +74,16 @@ namespace Business.Services {
         //Custom
 
         public async Task<IEnumerable<Tag>> GetAllTagActived () {
-            return (await this.GetAll (a => a.Deleted == false)).OrderBy (a => a.IsPriority);
+            return (await this.GetAll (a => a.Deleted == false))
+                .OrderByDescending (a => a.Active)
+                .ThenByDescending (a => a.CreateAt);
 
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagByUserName (string username) {
-            var data = (await _tag.GetAll (a => a.Deleted == false && a.Active == true && a.User.UserName == username))
-                .OrderBy (a => a.IsPriority);
-
-            return data;
+            return (await _tag.GetAll (a => a.Deleted == false && a.Active == true && a.User.UserName == username))
+                .OrderByDescending (a => a.Active)
+                .ThenByDescending (a => a.CreateAt);
         }
 
         public async Task<int> GetAllTagActivedCount () {
