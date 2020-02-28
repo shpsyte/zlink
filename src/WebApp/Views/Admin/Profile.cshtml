@@ -17,7 +17,7 @@
                             <a class="tag-register" 
                                href="@item.TargetLink" 
                                target="_blank" 
-                               data-url="@Url.Action("Store", "Admin")"
+                               data-url="@Url.Action("RegisterIpData", "Admin")"
                                rel="noopener noreferrer"
                                data-id="@item.Id">@item.Name</a>
                         </div> 
@@ -31,5 +31,5 @@
 
 @section Scripts
 {
-<script src="~/js/registertag.js" asp-append-version="true"></script>
+   <script defer src="~/js/registertag.js" asp-append-version="true"></script>
 }

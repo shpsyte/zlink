@@ -1,0 +1,75 @@
+@model Dashboard
+
+
+<input type="hidden" asp-for="@Model.Id" />
+<input type="hidden" id="url" name="url" value="@Url.Action("DashboardData", "Dashboard")" />
+ 
+<div class="container">
+   
+
+    <div class="count">
+        <div>
+            
+        </div>
+        <div>
+            
+        </div>
+   </div>
+    <div>
+        <div class="graph">
+            <div id="chart_byday" style="width: 100%; height: 500px;">  </div>
+            
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+
+     
+      
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        let id = GetOne("#Id").value;
+        let url = GetOne("#url").value + "/" + id;
+
+        function drawChart() {
+      
+            _get(url, function (data) {
+                var dataCol = new google.visualization.DataTable();
+                var clickByDay = data.stats.clicksByDay;
+                
+             
+                
+                dataCol.addColumn('string', 'day');
+                dataCol.addColumn('number', 'clicks');
+                
+                 for (i = 0; i < clickByDay.length; i++)
+                    dataCol.addRow([clickByDay[i].key, clickByDay[i].qtd]);
+ 
+
+                var options = {
+                    title: "Access By Day",
+                    hAxis: { title: "Days", titleTextStyle: { color: "#333" } },
+                    vAxis: { minValue: 0, scaleType: "int", format: "#" },
+                    legend: "none"
+                };
+
+                var chart = new google.visualization.ColumnChart(
+                    document.getElementById("chart_byday")
+                );
+                chart.draw(dataCol, options);
+                
+            });
+        }
+  
+
+  </script>
+   
+
+}
+

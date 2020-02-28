@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace WebApp.ViewModels {
 
@@ -15,64 +13,27 @@ namespace WebApp.ViewModels {
             this.Id = id;
         }
 
-        // public Dashboard (TagDTO tag, IEnumerable<TagDTO> tags) : this (tag) {
-        //     this.Tags = tags;
-        // }
+        public Dashboard (TagDTO tag, DateTime start, DateTime end) : this (tag.Id) {
+            this.Tag = tag;
+            this.Start = start;
+            this.End = end;
+        }
 
         public Guid Id { get; set; }
 
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
         public DateTime ReportDate { get; set; }
 
-        // public int Qtd {
-        //     get {
-        //         return Tag.TagData.Count ();
-        //     }
-        // }
-       //  public TagDTO Tag { get; set; }
-        //  public IEnumerable<TagDTO> Tags { get; set; }
-        // public IEnumerable<DashboardDate> DashboardDate {
-        //     get {
-        //         return from tagdata in this.Tag.TagData
-        //         group tagdata by tagdata.Data.ToLocalTime ().ToString ("dd/MM/yyyy")
-        //         into g
-        //         orderby g.Key
-        //         select new DashboardDate { Key = g.Key, Qtd = g.Count () };
-        //     }
-        // }
-        // public IEnumerable<DashboardRegion> DashboardRegion {
-        //     get {
-        //         return from tagdata in this.Tag.TagData
-        //         group tagdata by tagdata.RegionName
-        //         into g
-        //         orderby g.Key
-        //         select new DashboardRegion { Key = g.Key, Qtd = g.Count () };
-        //     }
-        // }
-        // public IEnumerable<DashboardCity> DashboardCity {
-        //     get {
-        //         return from tagdata in this.Tag.TagData
-        //         group tagdata by tagdata.City
-        //         into g
-        //         orderby g.Key
-        //         select new DashboardCity { Key = g.Key, Qtd = g.Count () };
+        public TagDTO Tag { get; set; }
 
-        //     }
-        // }
-    }
+        public DashboardStats Stats {
+            get {
+                return new DashboardStats (Tag, Start, End);
 
-    public class DashboardDate {
-        public string Key { get; set; }
-        public int Qtd { get; set; }
-    }
+            }
+        }
 
-    public class DashboardRegion {
-        public string Key { get; set; }
-        public int Qtd { get; set; }
-    }
-
-    public class DashboardCity {
-        public string Key { get; set; }
-        public int Qtd { get; set; }
     }
 
 }

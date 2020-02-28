@@ -3,7 +3,7 @@ let tags = GetAll(".tag-register");
 for (let tag of tags) {
     tag.addEventListener("mousedown", RegisterTag);
 }
-
+ 
 function RegisterTag() {
     event.preventDefault();
 

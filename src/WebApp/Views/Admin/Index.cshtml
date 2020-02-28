@@ -65,9 +65,8 @@
                         @if (item.Active)
                         {
                            <li data-mobile-id="@item.Id">
-                               <a asp-action="Dashboard" asp-controller="Admin" asp-route-id="@item.Id"> @item.Name</a>
+                               <a asp-action="Dashboard" asp-controller="Dashboard" asp-route-id="@item.Id"> @item.Name</a>
                            </li>
-
                         }
                     }
             </ul>

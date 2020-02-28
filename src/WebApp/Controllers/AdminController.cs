@@ -14,10 +14,6 @@ namespace WebApp.Controllers {
     public class AdminController : BaseController {
         public AdminController (IControllerServices services) : base (services) { }
 
-        private async Task<Dashboard> GetDataToDashBoard (Guid id) {
-            return new Dashboard (id);
-        }
-
         [Route ("app-link")]
         public async Task<IActionResult> Index () {
             return View (new TagDTO (_context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ())));
@@ -49,16 +45,6 @@ namespace WebApp.Controllers {
             });
         }
 
-        [Route ("app-dashboard/{id}")]
-        public async Task<IActionResult> Dashboard (Guid id) {
-            return View (await GetDataToDashBoard (id));
-        }
-
-        [Route ("app-data-dashboard/{id?}")]
-        public async Task<JsonResult> DashboardDate (Guid id) {
-            return Json ((await GetDataToDashBoard (id)).DashboardDate);
-        }
-
         [AllowAnonymous]
         [Route ("app/{username?}")]
         [Route ("p/{username?}")]
@@ -74,8 +60,8 @@ namespace WebApp.Controllers {
         }
 
         [AllowAnonymous]
-        [Route ("app-store-data")]
-        public async Task<JsonResult> Store (Guid id) {
+        [Route ("app-save-ip-data")]
+        public async Task<JsonResult> RegisterIpData (Guid id) {
 
             var tagDTO = new TagDataDTO (id,
                 _context._ipServices.ipFromServer,
