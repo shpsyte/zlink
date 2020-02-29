@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace WebApp.ViewModels {
 
@@ -9,14 +10,15 @@ namespace WebApp.ViewModels {
 
         }
 
-        public Dashboard (Guid id) : this () {
-            this.Id = id;
+        public Dashboard (IEnumerable<TagDTO> tags) : this () {
+            this.Tags = tags;
         }
 
-        public Dashboard (TagDTO tag, DateTime start, DateTime end) : this (tag.Id) {
+        public Dashboard (TagDTO tag, DateTime start, DateTime end) : this () {
             this.Tag = tag;
             this.Start = start;
             this.End = end;
+            this.Id = tag.Id;
         }
 
         public Guid Id { get; set; }
@@ -26,6 +28,7 @@ namespace WebApp.ViewModels {
         public DateTime ReportDate { get; set; }
 
         public TagDTO Tag { get; set; }
+        public IEnumerable<TagDTO> Tags { get; set; }
 
         public DashboardStats Stats {
             get {

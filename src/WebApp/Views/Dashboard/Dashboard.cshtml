@@ -1,10 +1,14 @@
 @model Dashboard
 
 
-<input type="hidden" asp-for="@Model.Id" />
+
 <input type="hidden" id="url" name="url" value="@Url.Action("DashboardData", "Dashboard")" />
  
 <div class="container">
+     <select asp-for="@Model.Id" id="Id" class ="form-control" asp-items="@(new SelectList(Model.Tags, "Id", "Name"))">
+        <option></option>
+    </select>
+
    <h1 id="name"></h1>
 
     <div class="count">
@@ -20,7 +24,7 @@
                 <thead>
                     <tr>
                         <th>Data</th>
-                        <th>PostalCode</th>
+                        <th style="width: 50px;">PostalCode</th>
                         <th>Country</th>
                         <th>RegionName</th>
                         <th>City</th>  
@@ -55,8 +59,6 @@
             _get(url, DrawGraph);
 
          };
-
-         d(GetOne("#Id").value);
 
 
          function DrawGraph(data)
@@ -135,7 +137,14 @@
                         })
         }
 
+        
+         
 
+        GetOne('#Id').addEventListener('change', function() {
+           d(this.value);      
+        });
+
+       
   
         
   

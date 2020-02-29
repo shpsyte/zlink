@@ -14,9 +14,10 @@ namespace WebApp.Controllers {
     public class DashboardController : BaseController {
         public DashboardController (IControllerServices services) : base (services) { }
 
-        [Route ("app-dashboard/{id}")]
-        public IActionResult Dashboard (Guid id) {
-            return View (new Dashboard (id));
+        [Route ("app-dashboard")]
+        public async Task<IActionResult> Dashboard () {
+            return View (new Dashboard (
+                _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ())));
         }
 
         [Route ("app-data-dashboard/{id?}")]
