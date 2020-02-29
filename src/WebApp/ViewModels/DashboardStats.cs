@@ -41,12 +41,14 @@ namespace WebApp.ViewModels {
                             Lon = a.Lon,
                             Organization = a.Organization,
                             CountryCode = a.CountryCode,
+                            Country = a.Country,
                             RegionName = a.RegionName,
                             City = a.City,
                             District = a.District,
                             a.PostalCode
 
-                    });
+                    })
+                    .OrderBy (a => a.Data);
             }
         }
 
@@ -99,6 +101,17 @@ namespace WebApp.ViewModels {
                 return from tagdata in this.Tag.TagData
                 where tagdata.Data >= start && tagdata.Data <= end
                 group tagdata by tagdata.City
+                into g
+                orderby g.Key
+                select new { Key = g.Key, Qtd = g.Count () };
+            }
+        }
+
+        public IEnumerable<object> ClicksByCountry {
+            get {
+                return from tagdata in this.Tag.TagData
+                where tagdata.Data >= start && tagdata.Data <= end
+                group tagdata by tagdata.Country
                 into g
                 orderby g.Key
                 select new { Key = g.Key, Qtd = g.Count () };

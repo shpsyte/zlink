@@ -5,69 +5,140 @@
 <input type="hidden" id="url" name="url" value="@Url.Action("DashboardData", "Dashboard")" />
  
 <div class="container">
-   
+   <h1 id="name"></h1>
 
     <div class="count">
         <div>
-            
+           <div id="totalClick"></div>
+           <div id="totalUniqueClick"></div>
         </div>
-        <div>
-            
-        </div>
+         
    </div>
     <div>
         <div class="graph">
-            <div id="chart_byday" style="width: 100%; height: 500px;">  </div>
-            
+            <table id="clicks" class="display">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>PostalCode</th>
+                        <th>Country</th>
+                        <th>RegionName</th>
+                        <th>City</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+          
+            <div id="byday" style="width: 100%; height: 500px;">  </div>
+            <div id="bymonth" style="width: 100%; height: 500px;">  </div>
+            <div id="byyear" style="width: 100%; height: 500px;">  </div>
+            <div id="byregion" style="width: 100%; height: 500px;">  </div>
+            <div id="bycity" style="width: 100%; height: 500px;">  </div>
+           
         </div>
     </div>
+    
 </div>
 
 
 @section Scripts
-{
+{ 
+   
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script>
+  
+         var d = function DrawDash(id)
+         {
+            let url = GetOne("#url").value + "/" + id;
+            _get(url, DrawGraph);
 
-     
-      
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        let id = GetOne("#Id").value;
-        let url = GetOne("#url").value + "/" + id;
+         };
 
-        function drawChart() {
-      
-            _get(url, function (data) {
-                var dataCol = new google.visualization.DataTable();
-                var clickByDay = data.stats.clicksByDay;
-                
-             
-                
-                dataCol.addColumn('string', 'day');
-                dataCol.addColumn('number', 'clicks');
-                
-                 for (i = 0; i < clickByDay.length; i++)
-                    dataCol.addRow([clickByDay[i].key, clickByDay[i].qtd]);
+         d(GetOne("#Id").value);
+
+
+         function DrawGraph(data)
+         {
+            GetOne("#name").innerHTML = data.name;
+            GetOne("#totalClick").innerHTML = data.stats.totalClicks;
+            GetOne("#totalUniqueClick").innerHTML = data.stats.totalUniqueClicks;
+
+            
+            let clickByDay = data.stats.clicksByDay;
+            let clicksByMonth = data.stats.clicksByMonth;
+            let clicksByYear = data.stats.clicksByYear;
+            let clicksByRegion = data.stats.clicksByRegion;
+            let clicksByCity = data.stats.clicksByCity;
+            let clicks = data.stats.clicks;
+
+            drawChart(clickByDay, 'Days', 'Access By Day', '#byday');
+            drawChart(clicksByMonth, 'Month', 'Access By Month', '#bymonth');
+            drawChart(clicksByYear, 'Year', 'Access By Year', '#byyear');
+            drawChart(clicksByRegion, 'Region', 'Access By Region', '#byregion');
+            drawChart(clicksByCity, 'City', 'Access By City', '#bycity');
+            drawTable(clicks);
+         }
+
  
 
-                var options = {
-                    title: "Access By Day",
-                    hAxis: { title: "Days", titleTextStyle: { color: "#333" } },
-                    vAxis: { minValue: 0, scaleType: "int", format: "#" },
-                    legend: "none"
-                };
+         function drawTable(data)
+         {
+            let dataTable = []
+           
 
-                var chart = new google.visualization.ColumnChart(
-                    document.getElementById("chart_byday")
+            for (i = 0; i < data.length; i++)
+ 
+                dataTable.push(
+                    new Array(
+                                new Date(data[i].data).toLocaleDateString('pt-Br'), 
+                              data[i].postalCode,
+                              data[i].country,
+                              data[i].regionName,
+                              data[i].city
+                             
+                             )
                 );
-                chart.draw(dataCol, options);
                 
-            });
-        }
-  
+            
+            let table = $('#clicks').DataTable({retrieve: true, data: dataTable})
+            table.destroy();
+            table = $('#clicks').DataTable({retrieve: true, data: dataTable})
+             
+            
+         }
 
+          function drawChart(data, column, title, divToGraph) {
+                google.charts.load("current", { packages: ["corechart"] });
+                google.charts.setOnLoadCallback(function drawChart()
+                        {
+                            var dataTable = new google.visualization.DataTable();
+                            dataTable.addColumn('string', column);
+                            dataTable.addColumn('number', 'Clicks');
+                            
+                            for (i = 0; i < data.length; i++)
+                                dataTable.addRow([data[i].key, data[i].qtd]);
+                            
+                            var options = {
+                                title: title,
+                                hAxis: { title: column, titleTextStyle: { color: "#333" } },
+                                vAxis: { minValue: 0, scaleType: "int", format: "#" },
+                                legend: "none"
+                            };
+                            
+                            var chart = new google.visualization.ColumnChart(
+                                GetOne(divToGraph)
+                            );
+
+                            chart.draw(dataTable, options);
+                        })
+        }
+
+
+  
+        
+  
   </script>
    
 

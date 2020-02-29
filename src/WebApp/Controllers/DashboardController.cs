@@ -14,7 +14,7 @@ namespace WebApp.Controllers {
     public class DashboardController : BaseController {
         public DashboardController (IControllerServices services) : base (services) { }
 
-        [Route ("app-dashboard")]
+        [Route ("app-dashboard/{id}")]
         public IActionResult Dashboard (Guid id) {
             return View (new Dashboard (id));
         }
@@ -25,6 +25,7 @@ namespace WebApp.Controllers {
 
             return Json (new {
                 data.Id,
+                    data.Tag.Name,
                     data.Stats
             });
         }
