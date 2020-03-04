@@ -70,7 +70,7 @@ namespace WebApp.Areas.Identity.Pages.Account.Manage {
 
             public bool RemoveImg { get; set; }
 
-            public string GetImgConverted {
+            public string GetImgConverted { 
                 get {
                     byte[] data = this.Avatar;
                     if (data == null) {

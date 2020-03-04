@@ -20,9 +20,29 @@ namespace WebApp.Extensions {
 
             return hasAction && hasController ? new HtmlString (attribute) : new HtmlString (string.Empty);
         }
+
         public static void RenderPartialIf (this IHtmlHelper htmlHelper, string partialViewName, bool condition) {
 
             if (!condition)
+                return;
+
+            htmlHelper.RenderPartialAsync (partialViewName).GetAwaiter ().GetResult ();
+        }
+
+        public static void RenderPartialIf (this IHtmlHelper htmlHelper, string partialViewName, bool condition, string Avoidview) {
+
+            if (!condition)
+                return;
+
+            var splitValue = Avoidview.Split (';');
+            var currentAction = (htmlHelper.ViewContext.RouteData.Values["action"] ?? string.Empty)
+                .ToString ()
+                .ToLower ()
+                .UnDash ();
+
+            var hasAction = splitValue.Contains (currentAction);
+
+            if (hasAction)
                 return;
 
             htmlHelper.RenderPartialAsync (partialViewName).GetAwaiter ().GetResult ();

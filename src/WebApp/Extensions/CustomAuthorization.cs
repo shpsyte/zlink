@@ -35,7 +35,7 @@ namespace WebApp.Extensions {
             if (!context.HttpContext.User.Identity.IsAuthenticated) {
                 var route = new RouteValueDictionary (new {
                     area = "Identity",
-                        page = "/Account/Login",
+                        page = "/Identity/Account/Login",
                         ReturnUrl = context.HttpContext.Request.Path.ToString ()
 
                 });

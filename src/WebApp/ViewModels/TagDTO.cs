@@ -64,6 +64,15 @@ namespace WebApp.ViewModels {
         public string UserName { get; }
         public byte[] Avatar { get; }
         public string MainLinkImg { get; }
+        public string GetImgConverted {
+            get {
+                byte[] data = this.Avatar;
+                if (data == null) {
+                    data = new byte[0];
+                }
+                return $"data:image/jpeg;base64,{Convert.ToBase64String (data)}";
+            }
+        }
 
     }
 }

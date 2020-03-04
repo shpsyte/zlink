@@ -5,7 +5,9 @@
 <h1>@Model.Theme</h1>
 <h1>@Model.MainLinkImg</h1>
 
-<form asp-antiforgery="true"> </form>
+<img id="imgProfile" src="@Model.GetImgConverted" alt="">
+
+ <form asp-antiforgery="true"> </form>
 
 <div class="container">
     <div class="tags">
@@ -27,9 +29,11 @@
     </div>
 </div>
 
-
+ 
 
 @section Scripts
 {
-   <script defer src="~/js/registertag.js" asp-append-version="true"></script>
+   <script>
+       RegisterTag()
+   </script>
 }

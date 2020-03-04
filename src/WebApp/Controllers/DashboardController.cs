@@ -32,11 +32,12 @@ namespace WebApp.Controllers {
         }
 
         private async Task<Dashboard> GetData (Guid id, DateTime start, DateTime end) {
-            return new Dashboard (
+            var dash = new Dashboard (
                 _context._mapper.Map<TagDTO> (await _context._tag.GetTagWithAllTagData (id)),
                 start,
                 end
             );
+            return dash;
         }
     }
 }

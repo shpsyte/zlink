@@ -23,9 +23,9 @@
             <table id="clicks" class="display">
                 <thead>
                     <tr>
+                        <th>Country</th>
                         <th>Data</th>
                         <th style="width: 50px;">PostalCode</th>
-                        <th>Country</th>
                         <th>RegionName</th>
                         <th>City</th>  
                     </tr>
@@ -49,106 +49,7 @@
 
 @section Scripts
 { 
-   
-
-  <script>
-  
-         var d = function DrawDash(id)
-         {
-            let url = GetOne("#url").value + "/" + id;
-            _get(url, DrawGraph);
-
-         };
-
-
-         function DrawGraph(data)
-         {
-            GetOne("#name").innerHTML = data.name;
-            GetOne("#totalClick").innerHTML = data.stats.totalClicks;
-            GetOne("#totalUniqueClick").innerHTML = data.stats.totalUniqueClicks;
-
-            
-            let clickByDay = data.stats.clicksByDay;
-            let clicksByMonth = data.stats.clicksByMonth;
-            let clicksByYear = data.stats.clicksByYear;
-            let clicksByRegion = data.stats.clicksByRegion;
-            let clicksByCity = data.stats.clicksByCity;
-            let clicks = data.stats.clicks;
-
-            drawChart(clickByDay, 'Days', 'Access By Day', '#byday');
-            drawChart(clicksByMonth, 'Month', 'Access By Month', '#bymonth');
-            drawChart(clicksByYear, 'Year', 'Access By Year', '#byyear');
-            drawChart(clicksByRegion, 'Region', 'Access By Region', '#byregion');
-            drawChart(clicksByCity, 'City', 'Access By City', '#bycity');
-            drawTable(clicks);
-         }
-
- 
-
-         function drawTable(data)
-         {
-            let dataTable = []
-           
-
-            for (i = 0; i < data.length; i++)
- 
-                dataTable.push(
-                    new Array(
-                                new Date(data[i].data).toLocaleDateString('pt-Br'), 
-                              data[i].postalCode,
-                              data[i].country,
-                              data[i].regionName,
-                              data[i].city
-                             
-                             )
-                );
-                
-            
-            let table = $('#clicks').DataTable({retrieve: true, data: dataTable})
-            table.destroy();
-            table = $('#clicks').DataTable({retrieve: true, data: dataTable})
-             
-            
-         }
-
-          function drawChart(data, column, title, divToGraph) {
-                google.charts.load("current", { packages: ["corechart"] });
-                google.charts.setOnLoadCallback(function drawChart()
-                        {
-                            var dataTable = new google.visualization.DataTable();
-                            dataTable.addColumn('string', column);
-                            dataTable.addColumn('number', 'Clicks');
-                            
-                            for (i = 0; i < data.length; i++)
-                                dataTable.addRow([data[i].key, data[i].qtd]);
-                            
-                            var options = {
-                                title: title,
-                                hAxis: { title: column, titleTextStyle: { color: "#333" } },
-                                vAxis: { minValue: 0, scaleType: "int", format: "#" },
-                                legend: "none"
-                            };
-                            
-                            var chart = new google.visualization.ColumnChart(
-                                GetOne(divToGraph)
-                            );
-
-                            chart.draw(dataTable, options);
-                        })
-        }
-
-        
-         
-
-        GetOne('#Id').addEventListener('change', function() {
-           d(this.value);      
-        });
-
-       
-  
-        
-  
-  </script>
+   <script>SetupDashBoard()</script>
    
 
 }

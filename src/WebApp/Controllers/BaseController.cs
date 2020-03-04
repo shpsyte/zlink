@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Business.Notifications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using WebApp.Services;
@@ -8,6 +9,7 @@ using WebApp.ViewModels;
 
 namespace WebApp.Controllers {
 
+    [Authorize]
     public class BaseController : Controller {
 
         public IControllerServices _context;

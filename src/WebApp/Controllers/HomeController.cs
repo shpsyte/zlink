@@ -1,20 +1,13 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Services;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers {
 
+    [Authorize]
     public class HomeController : Controller {
-
-        public IActionResult Index () {
-            return View ();
-        }
-
-        public IActionResult Privacy () {
-            return View ();
-
-        }
 
         [Route ("erro/{id:length(3,3)}")]
 

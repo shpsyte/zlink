@@ -10,6 +10,8 @@ namespace WebApp.Config {
 
             }).SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
 
+            services.ConfigureApplicationCookie (options => options.LoginPath = "/Identity/Account/Login");
+
             return services;
         }
 

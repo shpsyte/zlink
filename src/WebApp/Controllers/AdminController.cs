@@ -14,6 +14,7 @@ namespace WebApp.Controllers {
     public class AdminController : BaseController {
         public AdminController (IControllerServices services) : base (services) { }
 
+        [Route ("")]
         [Route ("app-link")]
         public async Task<IActionResult> Index () {
             return View (new TagDTO (_context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ())));

@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        @{ Html.NotRenderPartialIf("_nav", "profile");}
+        @{ Html.RenderPartialIf("_nav", User.Identity.IsAuthenticated, "profile"); }
     </header>
     <partial name="_CookieConsentPartial" />
     <div class="container">

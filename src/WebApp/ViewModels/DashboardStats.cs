@@ -48,18 +48,20 @@ namespace WebApp.ViewModels {
                             a.PostalCode
 
                     })
-                    .OrderBy (a => a.Data);
+                    .OrderByDescending (a => a.Data);
             }
         }
 
         public IEnumerable<object> ClicksByDay {
             get {
-                return from tagdata in this.Tag.TagData
+                var link = from tagdata in this.Tag.TagData
                 where tagdata.Data >= start && tagdata.Data <= end
+                orderby tagdata.Data
                 group tagdata by tagdata.Data.ToLocalTime ().ToString ("dd/MM/yyyy")
                 into g
-                orderby g.Key
                 select new { Key = g.Key, Qtd = g.Count () };
+
+                return link;
             }
         }
 
@@ -67,9 +69,9 @@ namespace WebApp.ViewModels {
             get {
                 return from tagdata in this.Tag.TagData
                 where tagdata.Data >= start && tagdata.Data <= end
+                orderby tagdata.Data
                 group tagdata by tagdata.Data.ToLocalTime ().ToString ("MM")
                 into g
-                orderby g.Key
                 select new { Key = g.Key, Qtd = g.Count () };
             }
         }
@@ -78,9 +80,9 @@ namespace WebApp.ViewModels {
             get {
                 return from tagdata in this.Tag.TagData
                 where tagdata.Data >= start && tagdata.Data <= end
+                orderby tagdata.Data
                 group tagdata by tagdata.Data.ToLocalTime ().ToString ("yyyy")
                 into g
-                orderby g.Key
                 select new { Key = g.Key, Qtd = g.Count () };
             }
         }
@@ -89,9 +91,9 @@ namespace WebApp.ViewModels {
             get {
                 return from tagdata in this.Tag.TagData
                 where tagdata.Data >= start && tagdata.Data <= end
+                orderby tagdata.RegionName
                 group tagdata by tagdata.RegionName
                 into g
-                orderby g.Key
                 select new { Key = g.Key, Qtd = g.Count () };
             }
         }
@@ -100,9 +102,9 @@ namespace WebApp.ViewModels {
             get {
                 return from tagdata in this.Tag.TagData
                 where tagdata.Data >= start && tagdata.Data <= end
+                orderby tagdata.City
                 group tagdata by tagdata.City
                 into g
-                orderby g.Key
                 select new { Key = g.Key, Qtd = g.Count () };
             }
         }
@@ -111,26 +113,12 @@ namespace WebApp.ViewModels {
             get {
                 return from tagdata in this.Tag.TagData
                 where tagdata.Data >= start && tagdata.Data <= end
+                orderby tagdata.Country
                 group tagdata by tagdata.Country
                 into g
-                orderby g.Key
                 select new { Key = g.Key, Qtd = g.Count () };
             }
         }
-        // public class DashboardDate {
-        //     public string Key { get; set; }
-        //     public int Qtd { get; set; }
-        // }
-
-        // public class DashboardRegion {
-        //     public string Key { get; set; }
-        //     public int Qtd { get; set; }
-        // }
-
-        // public class DashboardCity {
-        //     public string Key { get; set; }
-        //     public int Qtd { get; set; }
-        // }
 
     }
 }
