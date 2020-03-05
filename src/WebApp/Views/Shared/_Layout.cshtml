@@ -7,10 +7,12 @@
     <partial name="_css">
 </head>
 <body>
+ 
     <header>
-        @{ Html.RenderPartialIf("_nav", User.Identity.IsAuthenticated, "profile"); }
+        @{ Html.RenderPartialIf("_nav", User.Identity.IsAuthenticated, "prsofile"); }
     </header>
     <partial name="_CookieConsentPartial" />
+    
     <div class="container">
         <main>
             @RenderBody()
