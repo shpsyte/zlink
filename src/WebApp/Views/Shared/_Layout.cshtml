@@ -3,22 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebApp</title>
+    <title>WebApp - @ViewData["Title"]</title>
     <partial name="_css">
 </head>
-<body>
-    
+<body> 
     <header>
-        @{ Html.RenderPartialIf("_nav", User.Identity.IsAuthenticated, "prsofile"); }
+        @{ Html.RenderPartialIf("_nav", User.Identity.IsAuthenticated, "profile;logout"); }
     </header>
     <partial name="_CookieConsentPartial" />
-    
-    <div class="container">
         <main>
-            @RenderBody()
+            <div class="container">
+                @RenderBody()
+            </div>
         </main>
-    </div>
-    
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

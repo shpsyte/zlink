@@ -19,6 +19,35 @@ button {
     outline: 0;
 }
 
+/* Login style*/
+#account {
+    max-width: 550px;
+    text-align: left;
+    margin: 0 auto;
+    background: #fff;
+    padding: 12px 28px;
+    border-radius: 12px;
+}
+
+#account h4 {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 12px 0;
+}
+
+#account .form-group button {
+    width: 100%;
+}
+
+#account .actions {
+    text-align: center;
+    padding: 0 15px;
+}
+
+#account .actions a:nth-child(1) {
+    margin-right: 20px;
+}
+
 .tags {
     display: flex;
 }
