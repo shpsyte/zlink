@@ -18,20 +18,32 @@ namespace WebApp.Controllers {
         [Route ("app-link")]
         public async Task<IActionResult> Index () {
             var tagDTO = new TagDTO (
-                _context._user.UserName(),
+                _context._user.UserName (),
                 _context._profile,
                 _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ()));
 
             return View (tagDTO);
         }
 
+        [Route ("app-get-link/{username}")]
+        public async Task<IActionResult> GetLinksByUserPartial (string username) {
+            var tagDTO = new TagDTO (
+                username,
+                _context._profile,
+                _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ()));
+
+            return ViewComponent ("LinksByUser", tagDTO);
+        }
+
         [Route ("app-create-link")]
         public async Task<JsonResult> Create (TagDTO tagDTO) {
 
             await _context._tag.Add (_context._mapper.Map<Tag> (tagDTO));
+
             return Json (new {
                 success = OperacaoValida (),
-                    data = tagDTO
+                    data = tagDTO,
+                    username = _context._user.UserName ()
             });
         }
 

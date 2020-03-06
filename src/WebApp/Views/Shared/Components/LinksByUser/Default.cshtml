@@ -1,0 +1,18 @@
+@model TagDTO
+
+    <div class="card g-rounded-40 mobile">
+        <img src="@Model.GetImgConverted" alt="Profile">
+        <h3>@@@User.Identity.Name</h3>
+        <ul id="mobile">
+            @foreach(var item  in @Model.Tags)
+            {
+                @if (item.Active && !String.IsNullOrWhiteSpace(item.Name) && !String.IsNullOrWhiteSpace(item.TargetLink))
+                {
+                    <li data-mobile-id="@item.Id" class="btn btn-md u-btn-primary">
+                        @item.Name
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+ 

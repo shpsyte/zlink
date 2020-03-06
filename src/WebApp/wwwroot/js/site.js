@@ -4,10 +4,11 @@ var Print = console.log.bind(document);
 var NewElement = document.createElement.bind(document);
 var NewText = document.createTextNode.bind(document);
 
-function AddNewLi(ul, id, text) {
+function AddNewLi(ul, id, text, classs) {
     let li = NewElement("li");
     li.appendChild(NewText(text));
     li.setAttribute("data-mobile-id", id);
+    li.setAttribute("class", classs);
     ul.appendChild(li);
 }
 
@@ -295,9 +296,22 @@ function SetupCreateLink() {
     }
 
     function CreateElementForMobile(data) {
-        let linkDto = data.data;
-        let ul = GetOne("#mobile");
-        AddNewLi(ul, linkDto.id, linkDto.name);
+        let url = "/app-get-link/" + data.username;
+
+        _get(
+            url,
+            function(data) {
+                GetOne(".view-link").innerHTML = data.responseText;
+            },
+            function(data) {
+                GetOne(".view-link").innerHTML = data.responseText;
+            }
+        );
+
+        // let linkDto = data.data;
+        // let ul = GetOne("#mobile");
+
+        // AddNewLi(ul, linkDto.id, linkDto.name, "btn btn-md u-btn-primary");
     }
 
     // JS para alterar uma tag existe
@@ -347,7 +361,7 @@ function SetupCreateLink() {
             }
         } else {
             let ul = GetOne("#mobile");
-            AddNewLi(ul, id, name);
+            AddNewLi(ul, id, name, "btn btn-md u-btn-primary");
         }
     }
 }
