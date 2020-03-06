@@ -6,16 +6,16 @@
     <title>WebApp - @ViewData["Title"]</title>
     <partial name="_css">
 </head>
-<body> 
+<body class="has-fixed-sidebar">
     <header>
-        @{ Html.RenderPartialIf("_nav", User.Identity.IsAuthenticated, "profile;logout"); }
+         @{ Html.RenderPartialIf("_header", User.Identity.IsAuthenticated, "profile;logout"); }
     </header>
     <partial name="_CookieConsentPartial" />
-        <main>
-            <div class="container">
-                @RenderBody()
-            </div>
-        </main>
+    <main class="container">
+    <div class="row no-gutters g-pos-rel g-overflow-x-hidden">
+        @RenderBody()
+    </div>
+    </main>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

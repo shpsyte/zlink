@@ -17,7 +17,12 @@ namespace WebApp.Controllers {
         [Route ("")]
         [Route ("app-link")]
         public async Task<IActionResult> Index () {
-            return View (new TagDTO (_context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ())));
+            var tagDTO = new TagDTO (
+                _context._user.UserName(),
+                _context._profile,
+                _context._mapper.Map<IEnumerable<TagDTO>> (await _context._tag.GetAllTagActived ()));
+
+            return View (tagDTO);
         }
 
         [Route ("app-create-link")]
@@ -47,9 +52,7 @@ namespace WebApp.Controllers {
         }
 
         [AllowAnonymous]
-        [Route ("app/{username?}")]
-        [Route ("p/{username?}")]
-        [Route ("/{username}")]
+        [Route ("/{username?}")]
         public async Task<IActionResult> Profile (string username) {
 
             var tagDTO = new TagDTO (

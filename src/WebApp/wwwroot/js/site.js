@@ -178,26 +178,28 @@ function SetupCreateLink() {
         let divLinks = GetOne(".links");
         let url = GetOne("#url").value;
 
-        let divItem = NewElement("div");
-        divItem.setAttribute("class", "item");
-
-        // let form = NewElement("form");
-        // form.setAttribute("asp-antiforgery", "true");
-
-        let divDataLinks = NewElement("div");
-        divDataLinks.setAttribute("class", "data-links");
-
         let divDataInput = NewElement("div");
         divDataInput.setAttribute("class", "data-input");
 
-        let divDataActions = NewElement("div");
-        divDataActions.setAttribute("class", "data-action");
+        let button = NewElement("button");
+        button.setAttribute("value", "update");
+        button.setAttribute("data-key", nextItem);
+        button.setAttribute("data-type", "update");
+        button.setAttribute("data-id", linkDto.id);
+        button.setAttribute("data-url", url);
+        button.setAttribute("class", "btn g-bg-primary rounded-0");
+        button.appendChild(NewText("Update"));
+        button.onclick = UpdateTag;
 
         let inputName = NewElement("input");
         inputName.setAttribute("type", "text");
         inputName.setAttribute("data-key", nextItem);
         inputName.setAttribute("data-name", "");
         inputName.setAttribute("value", linkDto.name);
+        inputName.setAttribute(
+            "class",
+            "form-control form-control-xs rounded-0"
+        );
         inputName.value = linkDto.name;
 
         let inputLink = NewElement("input");
@@ -205,7 +207,22 @@ function SetupCreateLink() {
         inputLink.setAttribute("data-key", nextItem);
         inputLink.setAttribute("data-link", "");
         inputLink.setAttribute("value", linkDto.targetLink);
+        inputLink.setAttribute(
+            "class",
+            "form-control form-control-xs rounded-0"
+        );
         inputLink.value = linkDto.targetLink;
+
+        let i = NewElement("i");
+        i.setAttribute("class", "fa");
+        i.setAttribute("data-check-icon", "");
+
+        let divIcon = NewElement("div");
+        divIcon.setAttribute(
+            "class",
+            "u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0"
+        );
+        divIcon.appendChild(i);
 
         let inputActive = NewElement("input");
         inputActive.setAttribute("type", "checkbox");
@@ -215,38 +232,64 @@ function SetupCreateLink() {
         inputActive.setAttribute("data-url", url);
         inputActive.setAttribute("data-id", linkDto.id);
         inputActive.setAttribute("id", nextItem);
+        inputActive.setAttribute("value", true);
+        inputActive.setAttribute("checked", true);
+
+        inputActive.setAttribute(
+            "class",
+            "g-hidden-xs-up g-pos-abs g-top-0 g-left-0"
+        );
         inputActive.checked = linkDto.active;
         inputActive.onclick = UpdateTag;
 
-        let label = NewElement("label");
-        label.setAttribute("for", nextItem);
-        label.appendChild(NewText("Active"));
+        let labelItem = NewElement("label");
+        labelItem.setAttribute("class", "u-check g-pl-25");
 
-        let button = NewElement("button");
-        button.setAttribute("value", "update");
-        button.setAttribute("data-key", nextItem);
-        button.setAttribute("data-type", "update");
-        button.setAttribute("data-id", linkDto.id);
-        button.setAttribute("data-url", url);
+        labelItem.appendChild(divIcon);
+        labelItem.appendChild(inputActive);
 
-        button.appendChild(NewText("Update"));
+        let divActive = NewElement("div");
+        divActive.setAttribute(
+            "class",
+            "form-group g-mb-0 d-flex align-items-center"
+        );
+        divActive.appendChild(labelItem);
 
-        button.onclick = UpdateTag;
-
+        divDataInput.appendChild(button);
         divDataInput.appendChild(inputName);
         divDataInput.appendChild(inputLink);
-        divDataInput.appendChild(inputActive);
-        divDataInput.appendChild(label);
 
-        divDataActions.appendChild(button);
+        divDataInput.appendChild(divActive);
 
-        divDataLinks.appendChild(divDataInput);
-        divDataLinks.appendChild(divDataActions);
+        divLinks.prepend(divDataInput);
 
-        //    form.appendChild(divDataLinks);
-        divItem.appendChild(divDataLinks);
+        // let divItem = NewElement("div");
+        // divItem.setAttribute("class", "item");
 
-        divLinks.prepend(divItem);
+        // let divDataLinks = NewElement("div");
+        // divDataLinks.setAttribute("class", "data-links");
+
+        // let divDataActions = NewElement("div");
+        // divDataActions.setAttribute("class", "data-action");
+
+        // let label = NewElement("label");
+        // label.setAttribute("for", nextItem);
+        // label.appendChild(NewText("Active"));
+
+        // divDataInput.appendChild(inputName);
+        // divDataInput.appendChild(inputLink);
+        // divDataInput.appendChild(inputActive);
+        // divDataInput.appendChild(label);
+
+        // divDataActions.appendChild(button);
+
+        // divDataLinks.appendChild(divDataInput);
+        // divDataLinks.appendChild(divDataActions);
+
+        // //    form.appendChild(divDataLinks);
+        // divItem.appendChild(divDataLinks);
+
+        // divLinks.prepend(divItem);
 
         total.value = nextItem;
     }

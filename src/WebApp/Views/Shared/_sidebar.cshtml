@@ -1,0 +1,47 @@
+
+ <!-- Sidebar Nav -->
+    <div id="sideNav" class="col-auto u-sidebar-navigation-v1 u-sidebar-navigation--dark">
+      <div class="js-custom-scroll u-sidebar-navigation-v1-inner">
+        <ul id="sideNavMenu" class="u-sidebar-navigation-v1-menu u-side-nav--top-level-menu g-min-height-100vh mb-0">
+          
+          <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
+              <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" asp-area="" 
+              asp-controller="Admin" asp-action="Index" >
+              <span class="media-body align-self-center">My Links</span>
+            </a>
+          </li>
+           <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
+            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12"  asp-area="" asp-controller="Dashboard" asp-action="Dashboard" >
+              <span class="media-body align-self-center">Metrics</span>
+            </a>
+          </li>
+
+
+         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
+              <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" target="_blank" asp-area="" 
+              asp-controller="Admin" asp-action="Profile" asp-route-username="@User.Identity.Name">
+              <span class="media-body align-self-center">My Zlink</span>
+            </a>
+          </li>
+ 
+
+
+          <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
+              <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12"
+              asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+              <span class="media-body align-self-center">My Account</span>
+            </a>
+          </li>
+
+          <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
+             <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form>
+          </li>
+ 
+           
+ 
+        </ul>
+      </div>
+    </div>
+    <!-- End Sidebar Nav -->

@@ -2,78 +2,89 @@
 
 
 <form asp-antiforgery="true" >  </form> 
+ <input type="hidden" asp-for="TotalTags">
+
+<input type="hidden" id="url" value=@Url.Action("Update", "Admin")>
  @{ var line = 1; }
-
-<div class="container">
-    <div class="tags">
-         <div class="tag">
-             <h1>Link</h1>
-               <div id="loading" class="hide spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-
-             <div class="form">
-                     <input type="hidden" asp-for="TotalTags">
-                     <input type="hidden" id="url" value=@Url.Action("Update", "Admin")>
-                    <input asp-for="@Model.Name"  />
-                    <input asp-for="@Model.TargetLink" />
-                    <button data-url="@Url.Action("Create", "Admin")" 
-                        id="add" type="submit" value="Add">Add</button>
-             </div>
-
-             <hr>
-
-             <div class="links">
-              <div class="item">
-                    @foreach(var item  in @Model.Tags)
-                    {
-                       
-                            <div class="data-links">
-                                <div class="data-input">
-                                    <input data-key=@line data-name type="text" value="@item.Name"> 
-                                    <input data-key=@line data-link type="text" value="@item.TargetLink">
-                                    <input data-key=@line 
-                                    data-active  
-                                    data-type="update"  
-                                    data-url=@Url.Action("Update", "Admin")
-                                    data-id="@item.Id" 
-                                    id=@line 
-                                    type="checkbox" value="@item.Active" checked="@item.Active"  > 
-                                    <label for=@line >Active</label>
-                                    
-                                </div>
-                                <div class="data-action">
-                                    <button data-key=@line 
-                                            data-type="update" 
-                                            data-id="@item.Id" 
-                                            data-url=@Url.Action("Update", "Admin")
-                                            value="Update">Update</button>
-                                </div>  
-                            </div>
-                       
-                        { line++; }
-                    }
-                </div> 
-            </div>            
-         </div>
-         <div class="view">
-            <h1>View on Mobile</h1>
-
-            <ul id="mobile">
-                 @foreach(var item  in @Model.Tags)
-                    {
-                        @if (item.Active)
-                        {
-                           <li data-mobile-id="@item.Id">
-                               <a asp-action="Dashboard" asp-controller="Dashboard" asp-route-id="@item.Id"> @item.Name</a>
-                           </li>
-                        }
-                    }
-            </ul>
  
+    <div class="admin-link">
+         <div class="add-link">
+                <div class="card rounded-0">
+                    
+                    <div class="card-block form-add">
+                        <input class="form-control form-control-md g-rounded-20"  asp-for="@Model.Name" placeholder="Name"  />
+                        <input class="form-control form-control-md g-rounded-20"  asp-for="@Model.TargetLink" placeholder="Url"  />
+                        <button class="btn btn-md u-btn-primary g-rounded-20"
+                        data-url="@Url.Action("Create", "Admin")" 
+                        id="add" 
+                        value="Add">Add New Link</button>                
+                    </div>
+                </div>   
+                 <div class="card rounded-0">
+                     <p>Links</p>
+                    
+                    
+                    <div class="card-block form-update links">
+                        @foreach(var item  in @Model.Tags)
+                        {
+                            <div class="data-input">
+                                <button class="btn g-bg-primary rounded-0" 
+                                    data-key=@line 
+                                    data-type="update" 
+                                    data-id="@item.Id" 
+                                    data-url=@Url.Action("Update", "Admin")
+                                    value="Update">Update</button>
+
+                                <input class="form-control form-control-xs rounded-0"  data-key=@line data-name type="text" value="@item.Name"> 
+                                <input class="form-control form-control-xs rounded-0"  data-key=@line data-link type="text" value="@item.TargetLink">
+                                 
+
+                                <div class="form-group g-mb-0 d-flex align-items-center">
+                                    <label class="u-check g-pl-25">
+                                        <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" 
+                                        data-key=@line 
+                                        data-active  
+                                        data-type="update"  
+                                        data-url=@Url.Action("Update", "Admin")
+                                        data-id="@item.Id" 
+                                        id=@line 
+                                        type="checkbox" value="@item.Active" checked="@item.Active"  > 
+                                        <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                                           <i class="fa" data-check-icon=""></i>
+                                        </div>
+                                                                              
+                                    </label>  
+                                </div>
+ 
+                                  
+                            </div>
+                            { line++; }
+                        }
+                    </div>
+
+
+
+                 </div>          
+         </div>
+         <div class="view-link">
+              <div class="card g-rounded-40 mobile">
+                    <img src="@Model.GetImgConverted" alt="Profile">
+                    <h3>@@@User.Identity.Name</h3>
+                    <ul id="mobile">
+                        @foreach(var item  in @Model.Tags)
+                        {
+                            @if (item.Active)
+                            {
+                                <li data-mobile-id="@item.Id" class="btn btn-md u-btn-primary">
+                                    @item.Name
+                                </li>
+                            }
+                        }
+                    </ul>
+              </div>
          </div>
     </div>
-</div>
+ 
 
 
 

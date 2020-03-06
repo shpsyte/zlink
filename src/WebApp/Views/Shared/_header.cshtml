@@ -1,7 +1,7 @@
-
+ 
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand" asp-area="" asp-controller="Admin" asp-action="Index">WebApp</a>
+        <a class="navbar-brand" asp-area="" asp-controller="Admin" asp-action="Index">Links</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,18 +9,16 @@
         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
             <partial name="_LoginPartial" />
             <ul class="navbar-nav flex-grow-1">
-                
+                <div id="loading" class="hide spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Dashboard">Metrics</a>
+            </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Tag</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Profile" asp-route-username="shpsyte" >Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Dashboard" asp-action="Dashboard"  >Dashboard</a>
-                </li>
-                
+                <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+            </li>
             </ul>
         </div>
     </div>
-</nav>
+</nav> 

@@ -1,16 +1,26 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@{
+    string mylink = Url.Action("Profile", "Admin", new { username = @User.Identity.Name}, "http");
+}
 
-<ul class="navbar-nav">
+<input type="hidden"id="my-url"value="@mylink" />
+
+<ul class="navbar-nav my-link">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+    <li class="nav-item my-link">
+       <span id="my-link">My Link</span>
+        <a class="nav-link link-profile text-dark" target="_blank" asp-area="" 
+                asp-controller="Admin" asp-action="Profile" asp-route-username="@User.Identity.Name">
+                @mylink
+        </a>
     </li>
+    <button onclick="copyUrl(this)" id="myInput" class="btn btn-md u-btn-outline-primary copy">Copy</button>
     <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        <form class="form-inline logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+             <button type="submit" class="btn btn-md u-btn-outline-primary">Logout</button>
         </form>
     </li>
 }
@@ -24,3 +34,32 @@ else
     </li>
 }
 </ul>
+
+<script>
+    function copyUrl(btn) {
+        
+        var copyText = document.getElementById("my-url").value;
+        var $tempInput = document.createElement('INPUT');
+        document.body.appendChild($tempInput);
+        $tempInput.setAttribute('value', copyText)
+        $tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild($tempInput);
+
+        let myLInk = document.querySelector("#my-link") ;
+        myLInk.innerHTML = "Copied!";
+        myLInk.classList.toggle("copied");
+
+        setTimeout(function(){
+            myLInk.innerHTML = "My Link";
+            myLInk.classList.toggle("copied");
+        },1500)
+
+        
+
+
+ 
+       // alert("Copied the text: " + copyText);
+}
+</script>
+

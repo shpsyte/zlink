@@ -48,6 +48,140 @@ button {
     margin-right: 20px;
 }
 
+.form-inline button {
+    margin: 0;
+}
+
+.my-link {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+}
+
+.copy {
+    margin: 0 15px;
+}
+
+.copied {
+    background: rgba(0, 0, 0, 0.144);
+    color: #fff;
+}
+
+.my-link span {
+    font-weight: 600;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Link styles*/
+.admin-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.admin-link div {
+    flex: 1;
+}
+
+.add-link .add {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-link .card p {
+    text-align: center;
+    font-weight: 400;
+    margin: 0 auto;
+}
+
+.add-link > div:nth-child(1) {
+    margin-bottom: 15px;
+}
+
+.add-link > div:nth-child(2) {
+    padding-left: 15px;
+    min-height: 550px;
+}
+
+.form-add {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 200px !important;
+}
+
+.admin-link .links {
+}
+
+.form-update {
+    padding: 0.1rem !important;
+}
+.form-update .data-input {
+    display: flex;
+    margin-bottom: 2px;
+}
+.form-update .data-input button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+}
+
+/* Mobile View*/
+
+.admin-link .view-link ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.admin-link .view-link ul li {
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.admin-link .view-link ul li a {
+    color: #fff;
+}
+
+.mobile {
+    border-radius: 35px;
+    border: 8px solid black;
+
+    width: 352px;
+    height: 730px;
+    padding: 19px 16px;
+
+    margin: 0 auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+}
+
+.mobile img {
+    text-align: center;
+
+    width: 75px;
+    height: 75px;
+    position: relative;
+    border-radius: 50%;
+}
+
+.view-link {
+    text-align: center;
+    margin-left: 25px;
+}
+
 .tags {
     display: flex;
 }
