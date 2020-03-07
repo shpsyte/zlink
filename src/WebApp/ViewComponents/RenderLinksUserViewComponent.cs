@@ -6,11 +6,11 @@ using WebApp.Services;
 using WebApp.ViewModels;
 
 namespace WebApp.Extensions {
-    public class LinksByUserViewComponent : ViewComponent {
+    public class RenderLinksUserViewComponent : ViewComponent {
 
         private IControllerServices _services;
 
-        public LinksByUserViewComponent (IControllerServices services) {
+        public RenderLinksUserViewComponent (IControllerServices services) {
             this._services = services;
         }
 

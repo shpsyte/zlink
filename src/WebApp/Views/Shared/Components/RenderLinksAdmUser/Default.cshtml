@@ -1,0 +1,49 @@
+@model TagDTO
+@{ var line = 1; }
+@foreach(var item  in @Model.Tags)
+{
+    <div class="data-input">
+        <button class="btn g-bg-primary rounded-0" 
+            data-key=@line 
+            data-type="update" 
+            data-id="@item.Id" 
+            data-url=@Url.Action("Update", "Admin")
+            value="Update">Update</button>
+
+        <input class="form-control form-control-xs rounded-0"  data-key=@line data-name type="text" value="@item.Name"> 
+        <input class="form-control form-control-xs rounded-0"  data-key=@line data-link type="text" value="@item.TargetLink">
+            
+
+        <div class="form-group g-mb-0 d-flex align-items-center">
+            <label class="u-check g-pl-25">
+                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" 
+                data-key=@line 
+                data-active  
+                data-type="update"  
+                data-url=@Url.Action("Update", "Admin")
+                data-id="@item.Id" 
+                id=@line 
+                type="checkbox" value="@item.Active" checked="@item.Active"  > 
+                <div class="u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0">
+                    <i class="fa" data-check-icon=""></i>
+                </div>
+                                                        
+            </label>  
+        </div>
+
+            
+    </div>
+    { line++; }
+}
+
+@section Scripts
+{
+
+<script>
+     let btnUpdate = document.querySelectorAll('*[data-type="update"]');
+
+    for (const btn of btnUpdate) {
+        btn.addEventListener("click", UpdateTag);
+    }
+</script>
+}

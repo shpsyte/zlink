@@ -170,129 +170,118 @@ function SetupCreateLink() {
     }
 
     function CreateElementForTag(data) {
-        let total = GetOne("#TotalTags");
-        let nextItem = total.value;
-        ++nextItem;
+        _get(
+            "/app-get-link-adm/",
+            function(data) {
+                GetOne(".links").innerHTML = data.responseText;
+            },
+            function(data) {
+                let divli = document.querySelector(".links");
+                divli.innerHTML = data.responseText;
 
-        let linkDto = data.data;
+                let btnUpdate = GetAll('*[data-type="update"]');
 
-        let divLinks = GetOne(".links");
-        let url = GetOne("#url").value;
-
-        let divDataInput = NewElement("div");
-        divDataInput.setAttribute("class", "data-input");
-
-        let button = NewElement("button");
-        button.setAttribute("value", "update");
-        button.setAttribute("data-key", nextItem);
-        button.setAttribute("data-type", "update");
-        button.setAttribute("data-id", linkDto.id);
-        button.setAttribute("data-url", url);
-        button.setAttribute("class", "btn g-bg-primary rounded-0");
-        button.appendChild(NewText("Update"));
-        button.onclick = UpdateTag;
-
-        let inputName = NewElement("input");
-        inputName.setAttribute("type", "text");
-        inputName.setAttribute("data-key", nextItem);
-        inputName.setAttribute("data-name", "");
-        inputName.setAttribute("value", linkDto.name);
-        inputName.setAttribute(
-            "class",
-            "form-control form-control-xs rounded-0"
+                for (const btn of btnUpdate) {
+                    btn.addEventListener("click", UpdateTag);
+                }
+            }
         );
-        inputName.value = linkDto.name;
 
-        let inputLink = NewElement("input");
-        inputLink.setAttribute("type", "text");
-        inputLink.setAttribute("data-key", nextItem);
-        inputLink.setAttribute("data-link", "");
-        inputLink.setAttribute("value", linkDto.targetLink);
-        inputLink.setAttribute(
-            "class",
-            "form-control form-control-xs rounded-0"
-        );
-        inputLink.value = linkDto.targetLink;
+        // let total = GetOne("#TotalTags");
+        // let nextItem = total.value;
+        // ++nextItem;
 
-        let i = NewElement("i");
-        i.setAttribute("class", "fa");
-        i.setAttribute("data-check-icon", "");
+        // let linkDto = data.data;
 
-        let divIcon = NewElement("div");
-        divIcon.setAttribute(
-            "class",
-            "u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0"
-        );
-        divIcon.appendChild(i);
+        // let divLinks = GetOne(".links");
+        // let url = GetOne("#url").value;
 
-        let inputActive = NewElement("input");
-        inputActive.setAttribute("type", "checkbox");
-        inputActive.setAttribute("data-key", nextItem);
-        inputActive.setAttribute("data-active", "");
-        inputActive.setAttribute("data-type", "update");
-        inputActive.setAttribute("data-url", url);
-        inputActive.setAttribute("data-id", linkDto.id);
-        inputActive.setAttribute("id", nextItem);
-        inputActive.setAttribute("value", true);
-        inputActive.setAttribute("checked", true);
+        // let divDataInput = NewElement("div");
+        // divDataInput.setAttribute("class", "data-input");
 
-        inputActive.setAttribute(
-            "class",
-            "g-hidden-xs-up g-pos-abs g-top-0 g-left-0"
-        );
-        inputActive.checked = linkDto.active;
-        inputActive.onclick = UpdateTag;
+        // let button = NewElement("button");
+        // button.setAttribute("value", "update");
+        // button.setAttribute("data-key", nextItem);
+        // button.setAttribute("data-type", "update");
+        // button.setAttribute("data-id", linkDto.id);
+        // button.setAttribute("data-url", url);
+        // button.setAttribute("class", "btn g-bg-primary rounded-0");
+        // button.appendChild(NewText("Update"));
+        // button.onclick = UpdateTag;
 
-        let labelItem = NewElement("label");
-        labelItem.setAttribute("class", "u-check g-pl-25");
+        // let inputName = NewElement("input");
+        // inputName.setAttribute("type", "text");
+        // inputName.setAttribute("data-key", nextItem);
+        // inputName.setAttribute("data-name", "");
+        // inputName.setAttribute("value", linkDto.name);
+        // inputName.setAttribute(
+        //     "class",
+        //     "form-control form-control-xs rounded-0"
+        // );
+        // inputName.value = linkDto.name;
 
-        labelItem.appendChild(divIcon);
-        labelItem.appendChild(inputActive);
+        // let inputLink = NewElement("input");
+        // inputLink.setAttribute("type", "text");
+        // inputLink.setAttribute("data-key", nextItem);
+        // inputLink.setAttribute("data-link", "");
+        // inputLink.setAttribute("value", linkDto.targetLink);
+        // inputLink.setAttribute(
+        //     "class",
+        //     "form-control form-control-xs rounded-0"
+        // );
+        // inputLink.value = linkDto.targetLink;
 
-        let divActive = NewElement("div");
-        divActive.setAttribute(
-            "class",
-            "form-group g-mb-0 d-flex align-items-center"
-        );
-        divActive.appendChild(labelItem);
+        // let i = NewElement("i");
+        // i.setAttribute("class", "fa");
+        // i.setAttribute("data-check-icon", "");
 
-        divDataInput.appendChild(button);
-        divDataInput.appendChild(inputName);
-        divDataInput.appendChild(inputLink);
+        // let divIcon = NewElement("div");
+        // divIcon.setAttribute(
+        //     "class",
+        //     "u-check-icon-checkbox-v4 g-absolute-centered--y g-left-0"
+        // );
+        // divIcon.appendChild(i);
 
-        divDataInput.appendChild(divActive);
+        // let inputActive = NewElement("input");
+        // inputActive.setAttribute("type", "checkbox");
+        // inputActive.setAttribute("data-key", nextItem);
+        // inputActive.setAttribute("data-active", "");
+        // inputActive.setAttribute("data-type", "update");
+        // inputActive.setAttribute("data-url", url);
+        // inputActive.setAttribute("data-id", linkDto.id);
+        // inputActive.setAttribute("id", nextItem);
+        // inputActive.setAttribute("value", true);
+        // inputActive.setAttribute("checked", true);
 
-        divLinks.prepend(divDataInput);
+        // inputActive.setAttribute(
+        //     "class",
+        //     "g-hidden-xs-up g-pos-abs g-top-0 g-left-0"
+        // );
+        // inputActive.checked = linkDto.active;
+        // inputActive.onclick = UpdateTag;
 
-        // let divItem = NewElement("div");
-        // divItem.setAttribute("class", "item");
+        // let labelItem = NewElement("label");
+        // labelItem.setAttribute("class", "u-check g-pl-25");
 
-        // let divDataLinks = NewElement("div");
-        // divDataLinks.setAttribute("class", "data-links");
+        // labelItem.appendChild(divIcon);
+        // labelItem.appendChild(inputActive);
 
-        // let divDataActions = NewElement("div");
-        // divDataActions.setAttribute("class", "data-action");
+        // let divActive = NewElement("div");
+        // divActive.setAttribute(
+        //     "class",
+        //     "form-group g-mb-0 d-flex align-items-center"
+        // );
+        // divActive.appendChild(labelItem);
 
-        // let label = NewElement("label");
-        // label.setAttribute("for", nextItem);
-        // label.appendChild(NewText("Active"));
-
+        // divDataInput.appendChild(button);
         // divDataInput.appendChild(inputName);
         // divDataInput.appendChild(inputLink);
-        // divDataInput.appendChild(inputActive);
-        // divDataInput.appendChild(label);
 
-        // divDataActions.appendChild(button);
+        // divDataInput.appendChild(divActive);
 
-        // divDataLinks.appendChild(divDataInput);
-        // divDataLinks.appendChild(divDataActions);
+        // divLinks.prepend(divDataInput);
 
-        // //    form.appendChild(divDataLinks);
-        // divItem.appendChild(divDataLinks);
-
-        // divLinks.prepend(divItem);
-
-        total.value = nextItem;
+        //total.value = nextItem;
     }
 
     function CreateElementForMobile(data) {
@@ -347,10 +336,10 @@ function SetupCreateLink() {
         targetlink.value = linkDto.targetLink;
         active.checked = linkDto.active;
 
-        UpdateMobile(linkDto.id, linkDto.name, linkDto.active);
+        UpdateMobile(linkDto.id, linkDto.name, linkDto.active, data);
     }
 
-    function UpdateMobile(id, name, activeItem) {
+    function UpdateMobile(id, name, activeItem, data) {
         let li = GetOne(`li[data-mobile-id="${id}"]`);
 
         if (li !== null) {
@@ -360,8 +349,7 @@ function SetupCreateLink() {
                 li.innerHTML = name;
             }
         } else {
-            let ul = GetOne("#mobile");
-            AddNewLi(ul, id, name, "btn btn-md u-btn-primary");
+            CreateElementForMobile(data);
         }
     }
 }
