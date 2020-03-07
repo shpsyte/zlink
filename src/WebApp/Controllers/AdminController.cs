@@ -75,6 +75,7 @@ namespace WebApp.Controllers {
         }
 
         [AllowAnonymous]
+        // [Route ("p/{username?}")]
         [Route ("/{username?}")]
         public async Task<IActionResult> Profile (string username) {
 
